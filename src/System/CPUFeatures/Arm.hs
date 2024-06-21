@@ -248,12 +248,12 @@ bFEAT_CSV3 = False
 bFEAT_DIT = hwcap .&. hwcap_DIT /= 0
 bFEAT_DotProd = hwcap .&. hwcap_ASIMDDP /= 0
 bFEAT_DPB = hwcap .&. hwcap_DCPOP /= 0
-bFEAT_DPB2 = hwcap .&. hwcap_DCPODP /= 0
+bFEAT_DPB2 = hwcap2 .&. hwcap2_DCPODP /= 0
 bFEAT_ECV = False
 bFEAT_FCMA = hwcap .&. hwcap_FCMA /= 0
 bFEAT_FHM = hwcap .&. hwcap_ASIMDFHM /= 0
 bFEAT_FlagM = hwcap .&. hwcap_FLAGM /= 0
-bFEAT_FlagM2 = hwcap .&. hwcap_FLAGM2 /= 0
+bFEAT_FlagM2 = hwcap2 .&. hwcap2_FLAGM2 /= 0
 bFEAT_FP16 = hwcap .&. hwcap_FPHP /= 0 -- hwcap_ASIMDHP?
 bFEAT_FPAC = False
 bFEAT_FRINTTS = hwcap2 .&. hwcap2_FRINT /= 0
