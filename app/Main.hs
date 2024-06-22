@@ -2,6 +2,7 @@ module Main where
 
 import System.CPUFeatures.X86 as X86
 import System.CPUFeatures.Arm as Arm
+import System.CPUFeatures.Arm.Intrinsics as ArmI
 
 main :: IO ()
 main = do
@@ -77,3 +78,7 @@ main = do
   putStrLn $ "Arm.FEAT_SSBS = " ++ show Arm.bFEAT_SSBS
   putStrLn $ "Arm.FEAT_SVE = " ++ show Arm.bFEAT_SVE
   putStrLn $ "Arm.FEAT_SVE2 = " ++ show Arm.bFEAT_SVE2
+  -- putStrLn $ "polynomial multiplication: " ++ show (ArmI.polymul 0xdeadbeef 0xcafecafe) -- compile error
+  case Arm.sFEAT_PMULL of
+    STrue -> putStrLn $ "polynomial multiplication: " ++ show (ArmI.polymul 0xdeadbeefdeadbeef 0xcafecafec0ffee12)
+    SFalse -> putStrLn "polynomial multiplication not available"
