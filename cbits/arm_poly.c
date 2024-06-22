@@ -1,6 +1,7 @@
 #include <arm_acle.h>
 #include <arm_neon.h>
 
+__attribute__((target("arch=armv8-a+crypto")))
 uint64_t hs_cpu_features_polymul_lo(uint64_t a, uint64_t b)
 {
     poly64x1_t aa = vcreate_p64(a);
@@ -10,6 +11,7 @@ uint64_t hs_cpu_features_polymul_lo(uint64_t a, uint64_t b)
     return vgetq_lane_u64(result2, 0);
 }
 
+__attribute__((target("arch=armv8-a+crypto")))
 uint64_t hs_cpu_features_polymul_hi(uint64_t a, uint64_t b)
 {
     poly64x1_t aa = vcreate_p64(a);
@@ -20,6 +22,7 @@ uint64_t hs_cpu_features_polymul_hi(uint64_t a, uint64_t b)
 }
 
 /*
+__attribute__((target("arch=armv8-a+crypto")))
 uint64_t hs_cpu_features_polymul(uint64_t a, uint64_t b, uint64_t *out_hi)
 {
     poly64x1_t aa = vcreate_p64(a);
