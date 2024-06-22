@@ -60,3 +60,14 @@ test-suite cpu-features-test
     build-depends:
         base >=4.18.0.0 && <4.21,
         cpu-features
+
+benchmark cpu-features-benchmark
+    import:           warnings
+    default-language: GHC2021
+    type:             exitcode-stdio-1.0
+    main-is:          Benchmark.hs
+    hs-source-dirs:   benchmark
+    build-depends:
+        base >=4.18.0.0 && <4.21,
+        cpu-features,
+        criterion ^>=1.6.3.0
