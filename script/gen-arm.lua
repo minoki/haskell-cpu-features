@@ -69,4 +69,14 @@ elseif arg[1] == "test" then
   for _, name in ipairs(features) do
     io.write(string.format("  putStrLn $ \"Arm.%s = \" ++ show Arm.b%s\n", name, name))
   end
+elseif arg[1] == "export" then
+  for i, name in ipairs(features) do
+    if i == 1 then
+      io.write(string.format("  (%s, b%s, s%s\n", name, name, name))
+    else
+      io.write(string.format("  ,%s, b%s, s%s\n", name, name, name))
+    end
+  end
+  io.write("  ,SBool(..)\n")
+  io.write("  ) where\n")
 end

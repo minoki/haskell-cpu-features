@@ -77,6 +77,6 @@ elseif arg[1] == "export" then
       io.write(string.format("  ,%s, b%s, s%s\n", name, name, name))
     end
   end
-  io.write("  ,SBool(..)")
+  io.write("  ,SBool(..)\n")
   io.write("  ) where\n")
 end
