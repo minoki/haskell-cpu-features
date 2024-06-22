@@ -1,3 +1,4 @@
+{-# LANGUAGE GADTs #-}
 module Main where
 
 import System.CPUFeatures.X86 as X86

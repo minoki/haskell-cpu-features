@@ -1,3 +1,4 @@
+{-# LANGUAGE GADTs #-}
 import System.CPUFeatures.X86 as X86
 import System.CPUFeatures.Arm as Arm
 import System.CPUFeatures.Arm.Intrinsics as ArmI
