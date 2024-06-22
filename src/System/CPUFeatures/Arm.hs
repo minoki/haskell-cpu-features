@@ -166,7 +166,7 @@ sFEAT_SVE2 :: SBool FEAT_SVE2
 
 #if defined(darwin_HOST_OS)
 
-foreign import ccall hs_cpu_features_sysctl :: Addr# -> Bool
+foreign import ccall unsafe hs_cpu_features_sysctl :: Addr# -> Bool
 
 {-# NOINLINE bFEAT_AES #-}
 bFEAT_AES = hs_cpu_features_sysctl "hw.optional.arm.FEAT_AES"#

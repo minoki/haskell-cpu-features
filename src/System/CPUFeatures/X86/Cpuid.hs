@@ -20,7 +20,7 @@ queryCpuid :: Maybe (Dict X86Cpuid)
 
 #if defined(x86_64_HOST_ARCH)
 
-foreign import ccall hs_cpu_features_cpuid :: Word32 -> Word32 -> Ptr Word32 -> IO ()
+foreign import ccall unsafe hs_cpu_features_cpuid :: Word32 -> Word32 -> Ptr Word32 -> IO ()
 
 instance X86Cpuid where
   cpuid !initialEax !initialEcx = unsafePerformIO $ allocaBytes (4 * 4) $ \ptr -> do

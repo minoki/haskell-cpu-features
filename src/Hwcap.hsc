@@ -4,7 +4,7 @@ import Foreign.C.Types
 
 #include <sys/auxv.h>
 
-foreign import capi "sys/auxv.h getauxval" getauxval :: CULong -> CULong
+foreign import capi unsafe "sys/auxv.h getauxval" getauxval :: CULong -> CULong
 
 {-# NOINLINE hwcap #-}
 hwcap :: CULong
