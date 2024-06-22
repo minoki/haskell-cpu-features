@@ -1,3 +1,4 @@
+{-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE GADTs #-}
 module System.CPUFeatures.Util where
@@ -12,3 +13,6 @@ data SBool x where
 unsafeBoolToSBool :: Bool -> SBool a
 unsafeBoolToSBool True = unsafeCoerce STrue
 unsafeBoolToSBool False = unsafeCoerce SFalse
+
+type Dict :: Constraint -> Type
+data Dict c = c => Dict

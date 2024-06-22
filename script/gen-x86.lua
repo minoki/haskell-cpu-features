@@ -1,51 +1,55 @@
 features_string = [[
-FEAT_AES
-FEAT_BF16
-FEAT_BTI
-FEAT_CSV2
-FEAT_CSV3
-FEAT_DIT
-FEAT_DotProd
-FEAT_DPB
-FEAT_DPB2
-FEAT_ECV
-FEAT_FCMA
-FEAT_FHM
-FEAT_FlagM
-FEAT_FlagM2
-FEAT_FP16
-FEAT_FPAC
-FEAT_FRINTTS
-FEAT_I8MM
-FEAT_JSCVT
-FEAT_LRCPC
-FEAT_LRCPC2
-FEAT_LSE
-FEAT_LSE2
-FEAT_PAuth
-FEAT_PAuth2
-FEAT_PMULL
-FEAT_RDM
-FEAT_SB
-FEAT_SHA1
-FEAT_SHA256
-FEAT_SHA3
-FEAT_SHA512
-FEAT_SPECRES
-FEAT_SSBS
-FEAT_SVE
-FEAT_SVE2
+AESNI
+AMX_BF16
+AMX_INT8
+AMX_TILE
+AVX
+AVX_VNNI
+AVX2
+AVX512_BF16
+AVX512_BITALG
+AVX512_FP16
+AVX512_IFMA
+AVX512_VBMI
+AVX512_VBMI2
+AVX512_VNNI
+AVX512_VP2INTERSECT
+AVX512_VPOPCNTDQ
+AVX512BW
+AVX512CD
+AVX512DQ
+AVX512F
+AVX512VL
+BMI1
+BMI2
+F16C
+FMA
+GFNI
+PCLMULQDQ
+POPCNT
+RDRAND
+SHA
+SSE3
+SSE4_1
+SSE4_2
+SSSE3
+VAES
+VPCLMULQDQ
 ]]
 features = {}
 for s in string.gmatch(features_string, "[%w_]+") do
   table.insert(features, s)
 end
 
-if arg[1] == "bool" then
+if arg[1] == "decl" then
+  for _, name in ipairs(features) do
+    io.write(string.format("type family %s :: Bool\n", name))
+  end
+  io.write("\n")
   for _, name in ipairs(features) do
     io.write(string.format("b%s :: Bool\n", name))
   end
-elseif arg[1] == "sbool" then
+  io.write("\n")
   for _, name in ipairs(features) do
     io.write(string.format("s%s :: SBool %s\n", name, name))
   end
@@ -61,12 +65,18 @@ elseif arg[1] == "unavail" then
   for _, name in ipairs(features) do
     io.write(string.format("{-# INLINE b%s #-}\nb%s = False\n\n{-# INLINE s%s #-}\ns%s = SFalse\n\n", name, name, name, name))
   end
-elseif arg[1] == "darwin" then
-  for _, name in ipairs(features) do
-    io.write(string.format("{-# NOINLINE b%s #-}\nb%s = hs_cpu_features_sysctl \"hw.optional.arm.%s\"#\n\n", name, name, name))
-  end
 elseif arg[1] == "test" then
   for _, name in ipairs(features) do
-    io.write(string.format("  putStrLn $ \"Arm.%s = \" ++ show Arm.b%s\n", name, name))
+    io.write(string.format("  putStrLn $ \"X86.%s = \" ++ show X86.b%s\n", name, name))
   end
+elseif arg[1] == "export" then
+  for i, name in ipairs(features) do
+    if i == 1 then
+      io.write(string.format("  (%s, b%s, s%s\n", name, name, name))
+    else
+      io.write(string.format("  ,%s, b%s, s%s\n", name, name, name))
+    end
+  end
+  io.write("  ,SBool(..)")
+  io.write("  ) where\n")
 end
