@@ -1,6 +1,7 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE MagicHash #-}
 {-# LANGUAGE UnliftedFFITypes #-}
 module System.CPUFeatures.X86
   (AESNI, bAESNI, sAESNI
@@ -45,6 +46,9 @@ import System.CPUFeatures.Util
 #if defined(x86_64_HOST_ARCH)
 import System.CPUFeatures.X86.Cpuid
 import Data.Bits
+#if defined(darwin_HOST_OS)
+import GHC.Exts (Addr#)
+#endif
 #endif
 
 type family AESNI :: Bool
@@ -172,42 +176,52 @@ cpuid_07_0 = cpuid 0x7 0
 cpuid_07_1 :: CpuidResult
 cpuid_07_1 = cpuid 0x7 1
 
+#if defined(darwin_HOST_OS)
+foreign import ccall unsafe hs_cpu_features_sysctl :: Addr# -> Bool
+#endif
+
 bSSE3 = testBit (ecx cpuid_01) 0
 bPCLMULQDQ = testBit (ecx cpuid_01) 1
 bSSSE3 = testBit (ecx cpuid_01) 9
-bFMA = testBit (ecx cpuid_01) 12
+bFMA = bAVX && testBit (ecx cpuid_01) 12
 bSSE4_1 = testBit (ecx cpuid_01) 19
 bSSE4_2 = testBit (ecx cpuid_01) 20
 bPOPCNT = testBit (ecx cpuid_01) 23
 bAESNI = testBit (ecx cpuid_01) 25
-bAVX = testBit (ecx cpuid_01) 28
-bF16C = testBit (ecx cpuid_01) 29
+{-# NOINLINE bAVX #-}
+bAVX = (ecx cpuid_01 .&. (bit 27 .|. bit 28)) == bit 27 .|. bit 28 && (xgetbv 0 .&. 6) == 6 -- bit 27: OSXSAVE, bit 28: AVX
+bF16C = bAVX && testBit (ecx cpuid_01) 29
 bRDRAND = testBit (ecx cpuid_01) 30
 bBMI1 = testBit (ebx cpuid_07_0) 3
-bAVX2 = testBit (ebx cpuid_07_0) 5
+bAVX2 = bAVX && testBit (ebx cpuid_07_0) 5
 bBMI2 = testBit (ebx cpuid_07_0) 8
-bAVX512F = testBit (ebx cpuid_07_0) 16
-bAVX512DQ = testBit (ebx cpuid_07_0) 17
-bAVX512_IFMA = testBit (ebx cpuid_07_0) 21
-bAVX512CD = testBit (ebx cpuid_07_0) 28
+{-# NOINLINE bAVX512F #-}
+#if defined(darwin_HOST_OS)
+bAVX512F = hs_cpu_features_sysctl "hw.optional.avx512f"# -- AVX-512 support on macOS is on-demand, that is, XCR0 is cleared by default.
+#else
+bAVX512F = (ecx cpuid_01 .&. bit 27) == bit 27 && (xgetbv 0 .&. 0xe6) == 0xe6 && testBit (ebx cpuid_07_0) 16 -- CPUID.1:ECX[bit 27]: OSXSAVE
+#endif
+bAVX512DQ = bAVX512F && testBit (ebx cpuid_07_0) 17
+bAVX512_IFMA = bAVX512F && testBit (ebx cpuid_07_0) 21
+bAVX512CD = bAVX512F && testBit (ebx cpuid_07_0) 28
 bSHA = testBit (ebx cpuid_07_0) 29
-bAVX512BW = testBit (ebx cpuid_07_0) 30
+bAVX512BW = bAVX512F && testBit (ebx cpuid_07_0) 30
 bAVX512VL = testBit (ebx cpuid_07_0) 31
-bAVX512_VBMI = testBit (ecx cpuid_07_0) 1
-bAVX512_VBMI2 = testBit (ecx cpuid_07_0) 6
+bAVX512_VBMI = bAVX512F && testBit (ecx cpuid_07_0) 1
+bAVX512_VBMI2 = bAVX512F && testBit (ecx cpuid_07_0) 6
 bGFNI = testBit (ecx cpuid_07_0) 8
 bVAES = testBit (ecx cpuid_07_0) 9
 bVPCLMULQDQ = testBit (ecx cpuid_07_0) 10
-bAVX512_VNNI = testBit (ecx cpuid_07_0) 11
-bAVX512_BITALG = testBit (ecx cpuid_07_0) 12
-bAVX512_VPOPCNTDQ = testBit (ecx cpuid_07_0) 14
-bAVX512_VP2INTERSECT = testBit (edx cpuid_07_0) 8
+bAVX512_VNNI = bAVX512F && testBit (ecx cpuid_07_0) 11
+bAVX512_BITALG = bAVX512F && testBit (ecx cpuid_07_0) 12
+bAVX512_VPOPCNTDQ = bAVX512F && testBit (ecx cpuid_07_0) 14
+bAVX512_VP2INTERSECT = bAVX512F && testBit (edx cpuid_07_0) 8
 bAMX_BF16 = testBit (edx cpuid_07_0) 22
-bAVX512_FP16 = testBit (edx cpuid_07_0) 23
+bAVX512_FP16 = bAVX512F && testBit (edx cpuid_07_0) 23
 bAMX_TILE = testBit (edx cpuid_07_0) 24
 bAMX_INT8 = testBit (edx cpuid_07_0) 25
 bAVX_VNNI = testBit (eax cpuid_07_1) 4
-bAVX512_BF16 = testBit (eax cpuid_07_1) 5
+bAVX512_BF16 = bAVX512F && testBit (eax cpuid_07_1) 5
 
 sAESNI = unsafeBoolToSBool bAESNI
 sAMX_BF16 = unsafeBoolToSBool bAMX_BF16

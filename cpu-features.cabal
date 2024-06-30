@@ -26,7 +26,7 @@ library
                       System.CPUFeatures.Util
     -- other-modules:
     -- other-extensions:
-    if os(darwin) && arch(aarch64)
+    if os(darwin)
       c-sources:      cbits/sysctl.c
     if os(linux) && arch(aarch64)
       other-modules:  Hwcap
