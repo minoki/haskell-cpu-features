@@ -401,6 +401,217 @@ bSSSE3 = testBit (ecx cpuid_01) 9
 bVAES = testBit (ecx cpuid_07_0) 9
 bVPCLMULQDQ = testBit (ecx cpuid_07_0) 10
 
+#else
+
+{-# INLINE bAESNI #-}
+bAESNI = False
+
+{-# INLINE bAMX_BF16 #-}
+bAMX_BF16 = False
+
+{-# INLINE bAMX_FP16 #-}
+bAMX_FP16 = False
+
+{-# INLINE bAMX_INT8 #-}
+bAMX_INT8 = False
+
+{-# INLINE bAMX_TILE #-}
+bAMX_TILE = False
+
+{-# INLINE bAVX #-}
+bAVX = False
+
+{-# INLINE bAVX_VNNI #-}
+bAVX_VNNI = False
+
+{-# INLINE bAVX10_1 #-}
+bAVX10_1 = False
+
+{-# INLINE bAVX10_2 #-}
+bAVX10_2 = False
+
+{-# INLINE bAVX10_VL256 #-}
+bAVX10_VL256 = False
+
+{-# INLINE bAVX10_VL512 #-}
+bAVX10_VL512 = False
+
+{-# INLINE bAVX2 #-}
+bAVX2 = False
+
+{-# INLINE bAVX512_BF16 #-}
+bAVX512_BF16 = False
+
+{-# INLINE bAVX512_BF16_VL256 #-}
+bAVX512_BF16_VL256 = False
+
+{-# INLINE bAVX512_BF16_VL512 #-}
+bAVX512_BF16_VL512 = False
+
+{-# INLINE bAVX512_BITALG #-}
+bAVX512_BITALG = False
+
+{-# INLINE bAVX512_BITALG_VL256 #-}
+bAVX512_BITALG_VL256 = False
+
+{-# INLINE bAVX512_BITALG_VL512 #-}
+bAVX512_BITALG_VL512 = False
+
+{-# INLINE bAVX512_FP16 #-}
+bAVX512_FP16 = False
+
+{-# INLINE bAVX512_FP16_SCALAR #-}
+bAVX512_FP16_SCALAR = False
+
+{-# INLINE bAVX512_FP16_VL256 #-}
+bAVX512_FP16_VL256 = False
+
+{-# INLINE bAVX512_FP16_VL512 #-}
+bAVX512_FP16_VL512 = False
+
+{-# INLINE bAVX512_IFMA #-}
+bAVX512_IFMA = False
+
+{-# INLINE bAVX512_IFMA_VL256 #-}
+bAVX512_IFMA_VL256 = False
+
+{-# INLINE bAVX512_IFMA_VL512 #-}
+bAVX512_IFMA_VL512 = False
+
+{-# INLINE bAVX512_VBMI #-}
+bAVX512_VBMI = False
+
+{-# INLINE bAVX512_VBMI_VL256 #-}
+bAVX512_VBMI_VL256 = False
+
+{-# INLINE bAVX512_VBMI_VL512 #-}
+bAVX512_VBMI_VL512 = False
+
+{-# INLINE bAVX512_VBMI2 #-}
+bAVX512_VBMI2 = False
+
+{-# INLINE bAVX512_VBMI2_VL256 #-}
+bAVX512_VBMI2_VL256 = False
+
+{-# INLINE bAVX512_VBMI2_VL512 #-}
+bAVX512_VBMI2_VL512 = False
+
+{-# INLINE bAVX512_VNNI #-}
+bAVX512_VNNI = False
+
+{-# INLINE bAVX512_VNNI_VL256 #-}
+bAVX512_VNNI_VL256 = False
+
+{-# INLINE bAVX512_VNNI_VL512 #-}
+bAVX512_VNNI_VL512 = False
+
+{-# INLINE bAVX512_VPOPCNTDQ #-}
+bAVX512_VPOPCNTDQ = False
+
+{-# INLINE bAVX512_VPOPCNTDQ_VL256 #-}
+bAVX512_VPOPCNTDQ_VL256 = False
+
+{-# INLINE bAVX512_VPOPCNTDQ_VL512 #-}
+bAVX512_VPOPCNTDQ_VL512 = False
+
+{-# INLINE bAVX512BW #-}
+bAVX512BW = False
+
+{-# INLINE bAVX512BW_MASK #-}
+bAVX512BW_MASK = False
+
+{-# INLINE bAVX512BW_VL256 #-}
+bAVX512BW_VL256 = False
+
+{-# INLINE bAVX512BW_VL512 #-}
+bAVX512BW_VL512 = False
+
+{-# INLINE bAVX512CD #-}
+bAVX512CD = False
+
+{-# INLINE bAVX512CD_VL256 #-}
+bAVX512CD_VL256 = False
+
+{-# INLINE bAVX512CD_VL512 #-}
+bAVX512CD_VL512 = False
+
+{-# INLINE bAVX512DQ #-}
+bAVX512DQ = False
+
+{-# INLINE bAVX512DQ_SCALAR #-}
+bAVX512DQ_SCALAR = False
+
+{-# INLINE bAVX512DQ_VL256 #-}
+bAVX512DQ_VL256 = False
+
+{-# INLINE bAVX512DQ_VL512 #-}
+bAVX512DQ_VL512 = False
+
+{-# INLINE bAVX512F #-}
+bAVX512F = False
+
+{-# INLINE bAVX512F_SCALAR #-}
+bAVX512F_SCALAR = False
+
+{-# INLINE bAVX512F_VL256 #-}
+bAVX512F_VL256 = False
+
+{-# INLINE bAVX512F_VL512 #-}
+bAVX512F_VL512 = False
+
+{-# INLINE bAVX512VL #-}
+bAVX512VL = False
+
+{-# INLINE bBMI1 #-}
+bBMI1 = False
+
+{-# INLINE bBMI2 #-}
+bBMI2 = False
+
+{-# INLINE bF16C #-}
+bF16C = False
+
+{-# INLINE bFMA #-}
+bFMA = False
+
+{-# INLINE bGFNI #-}
+bGFNI = False
+
+{-# INLINE bPCLMULQDQ #-}
+bPCLMULQDQ = False
+
+{-# INLINE bPOPCNT #-}
+bPOPCNT = False
+
+{-# INLINE bRDRAND #-}
+bRDRAND = False
+
+{-# INLINE bSHA #-}
+bSHA = False
+
+{-# INLINE bSSE3 #-}
+bSSE3 = False
+
+{-# INLINE bSSE4_1 #-}
+bSSE4_1 = False
+
+{-# INLINE bSSE4_2 #-}
+bSSE4_2 = False
+
+{-# INLINE bSSSE3 #-}
+bSSSE3 = False
+
+{-# INLINE bVAES #-}
+bVAES = False
+
+{-# INLINE bVPCLMULQDQ #-}
+bVPCLMULQDQ = False
+
+{-# INLINE mAVX10 #-}
+mAVX10 = Nothing
+
+#endif
+
 sAESNI = unsafeBoolToSBool bAESNI
 sAMX_BF16 = unsafeBoolToSBool bAMX_BF16
 sAMX_FP16 = unsafeBoolToSBool bAMX_FP16
@@ -469,487 +680,3 @@ sSSE4_2 = unsafeBoolToSBool bSSE4_2
 sSSSE3 = unsafeBoolToSBool bSSSE3
 sVAES = unsafeBoolToSBool bVAES
 sVPCLMULQDQ = unsafeBoolToSBool bVPCLMULQDQ
-
-#else
-
-type instance AESNI = False
-type instance AMX_BF16 = False
-type instance AMX_FP16 = False
-type instance AMX_INT8 = False
-type instance AMX_TILE = False
-type instance AVX = False
-type instance AVX_VNNI = False
-type instance AVX10_1 = False
-type instance AVX10_2 = False
-type instance AVX10_VL256 = False
-type instance AVX10_VL512 = False
-type instance AVX2 = False
-type instance AVX512_BF16 = False
-type instance AVX512_BF16_VL256 = False
-type instance AVX512_BF16_VL512 = False
-type instance AVX512_BITALG = False
-type instance AVX512_BITALG_VL256 = False
-type instance AVX512_BITALG_VL512 = False
-type instance AVX512_FP16 = False
-type instance AVX512_FP16_SCALAR = False
-type instance AVX512_FP16_VL256 = False
-type instance AVX512_FP16_VL512 = False
-type instance AVX512_IFMA = False
-type instance AVX512_IFMA_VL256 = False
-type instance AVX512_IFMA_VL512 = False
-type instance AVX512_VBMI = False
-type instance AVX512_VBMI_VL256 = False
-type instance AVX512_VBMI_VL512 = False
-type instance AVX512_VBMI2 = False
-type instance AVX512_VBMI2_VL256 = False
-type instance AVX512_VBMI2_VL512 = False
-type instance AVX512_VNNI = False
-type instance AVX512_VNNI_VL256 = False
-type instance AVX512_VNNI_VL512 = False
-type instance AVX512_VPOPCNTDQ = False
-type instance AVX512_VPOPCNTDQ_VL256 = False
-type instance AVX512_VPOPCNTDQ_VL512 = False
-type instance AVX512BW = False
-type instance AVX512BW_MASK = False
-type instance AVX512BW_VL256 = False
-type instance AVX512BW_VL512 = False
-type instance AVX512CD = False
-type instance AVX512CD_VL256 = False
-type instance AVX512CD_VL512 = False
-type instance AVX512DQ = False
-type instance AVX512DQ_SCALAR = False
-type instance AVX512DQ_VL256 = False
-type instance AVX512DQ_VL512 = False
-type instance AVX512F = False
-type instance AVX512F_SCALAR = False
-type instance AVX512F_VL256 = False
-type instance AVX512F_VL512 = False
-type instance AVX512VL = False
-type instance BMI1 = False
-type instance BMI2 = False
-type instance F16C = False
-type instance FMA = False
-type instance GFNI = False
-type instance PCLMULQDQ = False
-type instance POPCNT = False
-type instance RDRAND = False
-type instance SHA = False
-type instance SSE3 = False
-type instance SSE4_1 = False
-type instance SSE4_2 = False
-type instance SSSE3 = False
-type instance VAES = False
-type instance VPCLMULQDQ = False
-
-{-# INLINE bAESNI #-}
-bAESNI = False
-
-{-# INLINE sAESNI #-}
-sAESNI = SFalse
-
-{-# INLINE bAMX_BF16 #-}
-bAMX_BF16 = False
-
-{-# INLINE sAMX_BF16 #-}
-sAMX_BF16 = SFalse
-
-{-# INLINE bAMX_FP16 #-}
-bAMX_FP16 = False
-
-{-# INLINE sAMX_FP16 #-}
-sAMX_FP16 = SFalse
-
-{-# INLINE bAMX_INT8 #-}
-bAMX_INT8 = False
-
-{-# INLINE sAMX_INT8 #-}
-sAMX_INT8 = SFalse
-
-{-# INLINE bAMX_TILE #-}
-bAMX_TILE = False
-
-{-# INLINE sAMX_TILE #-}
-sAMX_TILE = SFalse
-
-{-# INLINE bAVX #-}
-bAVX = False
-
-{-# INLINE sAVX #-}
-sAVX = SFalse
-
-{-# INLINE bAVX_VNNI #-}
-bAVX_VNNI = False
-
-{-# INLINE sAVX_VNNI #-}
-sAVX_VNNI = SFalse
-
-{-# INLINE bAVX10_1 #-}
-bAVX10_1 = False
-
-{-# INLINE sAVX10_1 #-}
-sAVX10_1 = SFalse
-
-{-# INLINE bAVX10_2 #-}
-bAVX10_2 = False
-
-{-# INLINE sAVX10_2 #-}
-sAVX10_2 = SFalse
-
-{-# INLINE bAVX10_VL256 #-}
-bAVX10_VL256 = False
-
-{-# INLINE sAVX10_VL256 #-}
-sAVX10_VL256 = SFalse
-
-{-# INLINE bAVX10_VL512 #-}
-bAVX10_VL512 = False
-
-{-# INLINE sAVX10_VL512 #-}
-sAVX10_VL512 = SFalse
-
-{-# INLINE bAVX2 #-}
-bAVX2 = False
-
-{-# INLINE sAVX2 #-}
-sAVX2 = SFalse
-
-{-# INLINE bAVX512_BF16 #-}
-bAVX512_BF16 = False
-
-{-# INLINE sAVX512_BF16 #-}
-sAVX512_BF16 = SFalse
-
-{-# INLINE bAVX512_BF16_VL256 #-}
-bAVX512_BF16_VL256 = False
-
-{-# INLINE sAVX512_BF16_VL256 #-}
-sAVX512_BF16_VL256 = SFalse
-
-{-# INLINE bAVX512_BF16_VL512 #-}
-bAVX512_BF16_VL512 = False
-
-{-# INLINE sAVX512_BF16_VL512 #-}
-sAVX512_BF16_VL512 = SFalse
-
-{-# INLINE bAVX512_BITALG #-}
-bAVX512_BITALG = False
-
-{-# INLINE sAVX512_BITALG #-}
-sAVX512_BITALG = SFalse
-
-{-# INLINE bAVX512_BITALG_VL256 #-}
-bAVX512_BITALG_VL256 = False
-
-{-# INLINE sAVX512_BITALG_VL256 #-}
-sAVX512_BITALG_VL256 = SFalse
-
-{-# INLINE bAVX512_BITALG_VL512 #-}
-bAVX512_BITALG_VL512 = False
-
-{-# INLINE sAVX512_BITALG_VL512 #-}
-sAVX512_BITALG_VL512 = SFalse
-
-{-# INLINE bAVX512_FP16 #-}
-bAVX512_FP16 = False
-
-{-# INLINE sAVX512_FP16 #-}
-sAVX512_FP16 = SFalse
-
-{-# INLINE bAVX512_FP16_SCALAR #-}
-bAVX512_FP16_SCALAR = False
-
-{-# INLINE sAVX512_FP16_SCALAR #-}
-sAVX512_FP16_SCALAR = SFalse
-
-{-# INLINE bAVX512_FP16_VL256 #-}
-bAVX512_FP16_VL256 = False
-
-{-# INLINE sAVX512_FP16_VL256 #-}
-sAVX512_FP16_VL256 = SFalse
-
-{-# INLINE bAVX512_FP16_VL512 #-}
-bAVX512_FP16_VL512 = False
-
-{-# INLINE sAVX512_FP16_VL512 #-}
-sAVX512_FP16_VL512 = SFalse
-
-{-# INLINE bAVX512_IFMA #-}
-bAVX512_IFMA = False
-
-{-# INLINE sAVX512_IFMA #-}
-sAVX512_IFMA = SFalse
-
-{-# INLINE bAVX512_IFMA_VL256 #-}
-bAVX512_IFMA_VL256 = False
-
-{-# INLINE sAVX512_IFMA_VL256 #-}
-sAVX512_IFMA_VL256 = SFalse
-
-{-# INLINE bAVX512_IFMA_VL512 #-}
-bAVX512_IFMA_VL512 = False
-
-{-# INLINE sAVX512_IFMA_VL512 #-}
-sAVX512_IFMA_VL512 = SFalse
-
-{-# INLINE bAVX512_VBMI #-}
-bAVX512_VBMI = False
-
-{-# INLINE sAVX512_VBMI #-}
-sAVX512_VBMI = SFalse
-
-{-# INLINE bAVX512_VBMI_VL256 #-}
-bAVX512_VBMI_VL256 = False
-
-{-# INLINE sAVX512_VBMI_VL256 #-}
-sAVX512_VBMI_VL256 = SFalse
-
-{-# INLINE bAVX512_VBMI_VL512 #-}
-bAVX512_VBMI_VL512 = False
-
-{-# INLINE sAVX512_VBMI_VL512 #-}
-sAVX512_VBMI_VL512 = SFalse
-
-{-# INLINE bAVX512_VBMI2 #-}
-bAVX512_VBMI2 = False
-
-{-# INLINE sAVX512_VBMI2 #-}
-sAVX512_VBMI2 = SFalse
-
-{-# INLINE bAVX512_VBMI2_VL256 #-}
-bAVX512_VBMI2_VL256 = False
-
-{-# INLINE sAVX512_VBMI2_VL256 #-}
-sAVX512_VBMI2_VL256 = SFalse
-
-{-# INLINE bAVX512_VBMI2_VL512 #-}
-bAVX512_VBMI2_VL512 = False
-
-{-# INLINE sAVX512_VBMI2_VL512 #-}
-sAVX512_VBMI2_VL512 = SFalse
-
-{-# INLINE bAVX512_VNNI #-}
-bAVX512_VNNI = False
-
-{-# INLINE sAVX512_VNNI #-}
-sAVX512_VNNI = SFalse
-
-{-# INLINE bAVX512_VNNI_VL256 #-}
-bAVX512_VNNI_VL256 = False
-
-{-# INLINE sAVX512_VNNI_VL256 #-}
-sAVX512_VNNI_VL256 = SFalse
-
-{-# INLINE bAVX512_VNNI_VL512 #-}
-bAVX512_VNNI_VL512 = False
-
-{-# INLINE sAVX512_VNNI_VL512 #-}
-sAVX512_VNNI_VL512 = SFalse
-
-{-# INLINE bAVX512_VPOPCNTDQ #-}
-bAVX512_VPOPCNTDQ = False
-
-{-# INLINE sAVX512_VPOPCNTDQ #-}
-sAVX512_VPOPCNTDQ = SFalse
-
-{-# INLINE bAVX512_VPOPCNTDQ_VL256 #-}
-bAVX512_VPOPCNTDQ_VL256 = False
-
-{-# INLINE sAVX512_VPOPCNTDQ_VL256 #-}
-sAVX512_VPOPCNTDQ_VL256 = SFalse
-
-{-# INLINE bAVX512_VPOPCNTDQ_VL512 #-}
-bAVX512_VPOPCNTDQ_VL512 = False
-
-{-# INLINE sAVX512_VPOPCNTDQ_VL512 #-}
-sAVX512_VPOPCNTDQ_VL512 = SFalse
-
-{-# INLINE bAVX512BW #-}
-bAVX512BW = False
-
-{-# INLINE sAVX512BW #-}
-sAVX512BW = SFalse
-
-{-# INLINE bAVX512BW_MASK #-}
-bAVX512BW_MASK = False
-
-{-# INLINE sAVX512BW_MASK #-}
-sAVX512BW_MASK = SFalse
-
-{-# INLINE bAVX512BW_VL256 #-}
-bAVX512BW_VL256 = False
-
-{-# INLINE sAVX512BW_VL256 #-}
-sAVX512BW_VL256 = SFalse
-
-{-# INLINE bAVX512BW_VL512 #-}
-bAVX512BW_VL512 = False
-
-{-# INLINE sAVX512BW_VL512 #-}
-sAVX512BW_VL512 = SFalse
-
-{-# INLINE bAVX512CD #-}
-bAVX512CD = False
-
-{-# INLINE sAVX512CD #-}
-sAVX512CD = SFalse
-
-{-# INLINE bAVX512CD_VL256 #-}
-bAVX512CD_VL256 = False
-
-{-# INLINE sAVX512CD_VL256 #-}
-sAVX512CD_VL256 = SFalse
-
-{-# INLINE bAVX512CD_VL512 #-}
-bAVX512CD_VL512 = False
-
-{-# INLINE sAVX512CD_VL512 #-}
-sAVX512CD_VL512 = SFalse
-
-{-# INLINE bAVX512DQ #-}
-bAVX512DQ = False
-
-{-# INLINE sAVX512DQ #-}
-sAVX512DQ = SFalse
-
-{-# INLINE bAVX512DQ_SCALAR #-}
-bAVX512DQ_SCALAR = False
-
-{-# INLINE sAVX512DQ_SCALAR #-}
-sAVX512DQ_SCALAR = SFalse
-
-{-# INLINE bAVX512DQ_VL256 #-}
-bAVX512DQ_VL256 = False
-
-{-# INLINE sAVX512DQ_VL256 #-}
-sAVX512DQ_VL256 = SFalse
-
-{-# INLINE bAVX512DQ_VL512 #-}
-bAVX512DQ_VL512 = False
-
-{-# INLINE sAVX512DQ_VL512 #-}
-sAVX512DQ_VL512 = SFalse
-
-{-# INLINE bAVX512F #-}
-bAVX512F = False
-
-{-# INLINE sAVX512F #-}
-sAVX512F = SFalse
-
-{-# INLINE bAVX512F_SCALAR #-}
-bAVX512F_SCALAR = False
-
-{-# INLINE sAVX512F_SCALAR #-}
-sAVX512F_SCALAR = SFalse
-
-{-# INLINE bAVX512F_VL256 #-}
-bAVX512F_VL256 = False
-
-{-# INLINE sAVX512F_VL256 #-}
-sAVX512F_VL256 = SFalse
-
-{-# INLINE bAVX512F_VL512 #-}
-bAVX512F_VL512 = False
-
-{-# INLINE sAVX512F_VL512 #-}
-sAVX512F_VL512 = SFalse
-
-{-# INLINE bAVX512VL #-}
-bAVX512VL = False
-
-{-# INLINE sAVX512VL #-}
-sAVX512VL = SFalse
-
-{-# INLINE bBMI1 #-}
-bBMI1 = False
-
-{-# INLINE sBMI1 #-}
-sBMI1 = SFalse
-
-{-# INLINE bBMI2 #-}
-bBMI2 = False
-
-{-# INLINE sBMI2 #-}
-sBMI2 = SFalse
-
-{-# INLINE bF16C #-}
-bF16C = False
-
-{-# INLINE sF16C #-}
-sF16C = SFalse
-
-{-# INLINE bFMA #-}
-bFMA = False
-
-{-# INLINE sFMA #-}
-sFMA = SFalse
-
-{-# INLINE bGFNI #-}
-bGFNI = False
-
-{-# INLINE sGFNI #-}
-sGFNI = SFalse
-
-{-# INLINE bPCLMULQDQ #-}
-bPCLMULQDQ = False
-
-{-# INLINE sPCLMULQDQ #-}
-sPCLMULQDQ = SFalse
-
-{-# INLINE bPOPCNT #-}
-bPOPCNT = False
-
-{-# INLINE sPOPCNT #-}
-sPOPCNT = SFalse
-
-{-# INLINE bRDRAND #-}
-bRDRAND = False
-
-{-# INLINE sRDRAND #-}
-sRDRAND = SFalse
-
-{-# INLINE bSHA #-}
-bSHA = False
-
-{-# INLINE sSHA #-}
-sSHA = SFalse
-
-{-# INLINE bSSE3 #-}
-bSSE3 = False
-
-{-# INLINE sSSE3 #-}
-sSSE3 = SFalse
-
-{-# INLINE bSSE4_1 #-}
-bSSE4_1 = False
-
-{-# INLINE sSSE4_1 #-}
-sSSE4_1 = SFalse
-
-{-# INLINE bSSE4_2 #-}
-bSSE4_2 = False
-
-{-# INLINE sSSE4_2 #-}
-sSSE4_2 = SFalse
-
-{-# INLINE bSSSE3 #-}
-bSSSE3 = False
-
-{-# INLINE sSSSE3 #-}
-sSSSE3 = SFalse
-
-{-# INLINE bVAES #-}
-bVAES = False
-
-{-# INLINE sVAES #-}
-sVAES = SFalse
-
-{-# INLINE bVPCLMULQDQ #-}
-bVPCLMULQDQ = False
-
-{-# INLINE sVPCLMULQDQ #-}
-sVPCLMULQDQ = SFalse
-
-{-# INLINE mAVX10 #-}
-mAVX10 = Nothing
-
-#endif

@@ -55,11 +55,7 @@ elseif arg[1] == "sbool_impl" then
   end
 elseif arg[1] == "unavail" then
   for _, name in ipairs(features) do
-    io.write(string.format("type instance %s = False\n", name))
-  end
-  io.write("\n")
-  for _, name in ipairs(features) do
-    io.write(string.format("{-# INLINE b%s #-}\nb%s = False\n\n{-# INLINE s%s #-}\ns%s = SFalse\n\n", name, name, name, name))
+    io.write(string.format("{-# INLINE b%s #-}\nb%s = False\n\n", name, name))
   end
 elseif arg[1] == "darwin" then
   for _, name in ipairs(features) do

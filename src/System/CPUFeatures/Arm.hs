@@ -319,6 +319,118 @@ bFEAT_SVE2 = hwcap2 .&. hwcap2_SVE2 /= 0
 #error bug
 #endif
 
+#else
+
+{-# INLINE bFEAT_AES #-}
+bFEAT_AES = False
+
+{-# INLINE bFEAT_BF16 #-}
+bFEAT_BF16 = False
+
+{-# INLINE bFEAT_BTI #-}
+bFEAT_BTI = False
+
+{-# INLINE bFEAT_CSV2 #-}
+bFEAT_CSV2 = False
+
+{-# INLINE bFEAT_CSV3 #-}
+bFEAT_CSV3 = False
+
+{-# INLINE bFEAT_DIT #-}
+bFEAT_DIT = False
+
+{-# INLINE bFEAT_DotProd #-}
+bFEAT_DotProd = False
+
+{-# INLINE bFEAT_DPB #-}
+bFEAT_DPB = False
+
+{-# INLINE bFEAT_DPB2 #-}
+bFEAT_DPB2 = False
+
+{-# INLINE bFEAT_ECV #-}
+bFEAT_ECV = False
+
+{-# INLINE bFEAT_FCMA #-}
+bFEAT_FCMA = False
+
+{-# INLINE bFEAT_FHM #-}
+bFEAT_FHM = False
+
+{-# INLINE bFEAT_FlagM #-}
+bFEAT_FlagM = False
+
+{-# INLINE bFEAT_FlagM2 #-}
+bFEAT_FlagM2 = False
+
+{-# INLINE bFEAT_FP16 #-}
+bFEAT_FP16 = False
+
+{-# INLINE bFEAT_FPAC #-}
+bFEAT_FPAC = False
+
+{-# INLINE bFEAT_FRINTTS #-}
+bFEAT_FRINTTS = False
+
+{-# INLINE bFEAT_I8MM #-}
+bFEAT_I8MM = False
+
+{-# INLINE bFEAT_JSCVT #-}
+bFEAT_JSCVT = False
+
+{-# INLINE bFEAT_LRCPC #-}
+bFEAT_LRCPC = False
+
+{-# INLINE bFEAT_LRCPC2 #-}
+bFEAT_LRCPC2 = False
+
+{-# INLINE bFEAT_LSE #-}
+bFEAT_LSE = False
+
+{-# INLINE bFEAT_LSE2 #-}
+bFEAT_LSE2 = False
+
+{-# INLINE bFEAT_PAuth #-}
+bFEAT_PAuth = False
+
+{-# INLINE bFEAT_PAuth2 #-}
+bFEAT_PAuth2 = False
+
+{-# INLINE bFEAT_PMULL #-}
+bFEAT_PMULL = False
+
+{-# INLINE bFEAT_RDM #-}
+bFEAT_RDM = False
+
+{-# INLINE bFEAT_SB #-}
+bFEAT_SB = False
+
+{-# INLINE bFEAT_SHA1 #-}
+bFEAT_SHA1 = False
+
+{-# INLINE bFEAT_SHA256 #-}
+bFEAT_SHA256 = False
+
+{-# INLINE bFEAT_SHA3 #-}
+bFEAT_SHA3 = False
+
+{-# INLINE bFEAT_SHA512 #-}
+bFEAT_SHA512 = False
+
+{-# INLINE bFEAT_SPECRES #-}
+bFEAT_SPECRES = False
+
+{-# INLINE bFEAT_SSBS #-}
+bFEAT_SSBS = False
+
+{-# INLINE bFEAT_SVE #-}
+bFEAT_SVE = False
+
+{-# INLINE bFEAT_SVE2 #-}
+bFEAT_SVE2 = False
+
+#endif
+
 sFEAT_AES = unsafeBoolToSBool bFEAT_AES
 sFEAT_BF16 = unsafeBoolToSBool bFEAT_BF16
 sFEAT_BTI = unsafeBoolToSBool bFEAT_BTI
@@ -355,260 +467,3 @@ sFEAT_SPECRES = unsafeBoolToSBool bFEAT_SPECRES
 sFEAT_SSBS = unsafeBoolToSBool bFEAT_SSBS
 sFEAT_SVE = unsafeBoolToSBool bFEAT_SVE
 sFEAT_SVE2 = unsafeBoolToSBool bFEAT_SVE2
-
-#else
-
-type instance FEAT_AES = False
-type instance FEAT_BF16 = False
-type instance FEAT_BTI = False
-type instance FEAT_CSV2 = False
-type instance FEAT_CSV3 = False
-type instance FEAT_DIT = False
-type instance FEAT_DotProd = False
-type instance FEAT_DPB = False
-type instance FEAT_DPB2 = False
-type instance FEAT_ECV = False
-type instance FEAT_FCMA = False
-type instance FEAT_FHM = False
-type instance FEAT_FlagM = False
-type instance FEAT_FlagM2 = False
-type instance FEAT_FP16 = False
-type instance FEAT_FPAC = False
-type instance FEAT_FRINTTS = False
-type instance FEAT_I8MM = False
-type instance FEAT_JSCVT = False
-type instance FEAT_LRCPC = False
-type instance FEAT_LRCPC2 = False
-type instance FEAT_LSE = False
-type instance FEAT_LSE2 = False
-type instance FEAT_PAuth = False
-type instance FEAT_PAuth2 = False
-type instance FEAT_PMULL = False
-type instance FEAT_RDM = False
-type instance FEAT_SB = False
-type instance FEAT_SHA1 = False
-type instance FEAT_SHA256 = False
-type instance FEAT_SHA3 = False
-type instance FEAT_SHA512 = False
-type instance FEAT_SPECRES = False
-type instance FEAT_SSBS = False
-type instance FEAT_SVE = False
-type instance FEAT_SVE2 = False
-
-{-# INLINE bFEAT_AES #-}
-bFEAT_AES = False
-
-{-# INLINE sFEAT_AES #-}
-sFEAT_AES = SFalse
-
-{-# INLINE bFEAT_BF16 #-}
-bFEAT_BF16 = False
-
-{-# INLINE sFEAT_BF16 #-}
-sFEAT_BF16 = SFalse
-
-{-# INLINE bFEAT_BTI #-}
-bFEAT_BTI = False
-
-{-# INLINE sFEAT_BTI #-}
-sFEAT_BTI = SFalse
-
-{-# INLINE bFEAT_CSV2 #-}
-bFEAT_CSV2 = False
-
-{-# INLINE sFEAT_CSV2 #-}
-sFEAT_CSV2 = SFalse
-
-{-# INLINE bFEAT_CSV3 #-}
-bFEAT_CSV3 = False
-
-{-# INLINE sFEAT_CSV3 #-}
-sFEAT_CSV3 = SFalse
-
-{-# INLINE bFEAT_DIT #-}
-bFEAT_DIT = False
-
-{-# INLINE sFEAT_DIT #-}
-sFEAT_DIT = SFalse
-
-{-# INLINE bFEAT_DotProd #-}
-bFEAT_DotProd = False
-
-{-# INLINE sFEAT_DotProd #-}
-sFEAT_DotProd = SFalse
-
-{-# INLINE bFEAT_DPB #-}
-bFEAT_DPB = False
-
-{-# INLINE sFEAT_DPB #-}
-sFEAT_DPB = SFalse
-
-{-# INLINE bFEAT_DPB2 #-}
-bFEAT_DPB2 = False
-
-{-# INLINE sFEAT_DPB2 #-}
-sFEAT_DPB2 = SFalse
-
-{-# INLINE bFEAT_ECV #-}
-bFEAT_ECV = False
-
-{-# INLINE sFEAT_ECV #-}
-sFEAT_ECV = SFalse
-
-{-# INLINE bFEAT_FCMA #-}
-bFEAT_FCMA = False
-
-{-# INLINE sFEAT_FCMA #-}
-sFEAT_FCMA = SFalse
-
-{-# INLINE bFEAT_FHM #-}
-bFEAT_FHM = False
-
-{-# INLINE sFEAT_FHM #-}
-sFEAT_FHM = SFalse
-
-{-# INLINE bFEAT_FlagM #-}
-bFEAT_FlagM = False
-
-{-# INLINE sFEAT_FlagM #-}
-sFEAT_FlagM = SFalse
-
-{-# INLINE bFEAT_FlagM2 #-}
-bFEAT_FlagM2 = False
-
-{-# INLINE sFEAT_FlagM2 #-}
-sFEAT_FlagM2 = SFalse
-
-{-# INLINE bFEAT_FP16 #-}
-bFEAT_FP16 = False
-
-{-# INLINE sFEAT_FP16 #-}
-sFEAT_FP16 = SFalse
-
-{-# INLINE bFEAT_FPAC #-}
-bFEAT_FPAC = False
-
-{-# INLINE sFEAT_FPAC #-}
-sFEAT_FPAC = SFalse
-
-{-# INLINE bFEAT_FRINTTS #-}
-bFEAT_FRINTTS = False
-
-{-# INLINE sFEAT_FRINTTS #-}
-sFEAT_FRINTTS = SFalse
-
-{-# INLINE bFEAT_I8MM #-}
-bFEAT_I8MM = False
-
-{-# INLINE sFEAT_I8MM #-}
-sFEAT_I8MM = SFalse
-
-{-# INLINE bFEAT_JSCVT #-}
-bFEAT_JSCVT = False
-
-{-# INLINE sFEAT_JSCVT #-}
-sFEAT_JSCVT = SFalse
-
-{-# INLINE bFEAT_LRCPC #-}
-bFEAT_LRCPC = False
-
-{-# INLINE sFEAT_LRCPC #-}
-sFEAT_LRCPC = SFalse
-
-{-# INLINE bFEAT_LRCPC2 #-}
-bFEAT_LRCPC2 = False
-
-{-# INLINE sFEAT_LRCPC2 #-}
-sFEAT_LRCPC2 = SFalse
-
-{-# INLINE bFEAT_LSE #-}
-bFEAT_LSE = False
-
-{-# INLINE sFEAT_LSE #-}
-sFEAT_LSE = SFalse
-
-{-# INLINE bFEAT_LSE2 #-}
-bFEAT_LSE2 = False
-
-{-# INLINE sFEAT_LSE2 #-}
-sFEAT_LSE2 = SFalse
-
-{-# INLINE bFEAT_PAuth #-}
-bFEAT_PAuth = False
-
-{-# INLINE sFEAT_PAuth #-}
-sFEAT_PAuth = SFalse
-
-{-# INLINE bFEAT_PAuth2 #-}
-bFEAT_PAuth2 = False
-
-{-# INLINE sFEAT_PAuth2 #-}
-sFEAT_PAuth2 = SFalse
-
-{-# INLINE bFEAT_PMULL #-}
-bFEAT_PMULL = False
-
-{-# INLINE sFEAT_PMULL #-}
-sFEAT_PMULL = SFalse
-
-{-# INLINE bFEAT_RDM #-}
-bFEAT_RDM = False
-
-{-# INLINE sFEAT_RDM #-}
-sFEAT_RDM = SFalse
-
-{-# INLINE bFEAT_SB #-}
-bFEAT_SB = False
-
-{-# INLINE sFEAT_SB #-}
-sFEAT_SB = SFalse
-
-{-# INLINE bFEAT_SHA1 #-}
-bFEAT_SHA1 = False
-
-{-# INLINE sFEAT_SHA1 #-}
-sFEAT_SHA1 = SFalse
-
-{-# INLINE bFEAT_SHA256 #-}
-bFEAT_SHA256 = False
-
-{-# INLINE sFEAT_SHA256 #-}
-sFEAT_SHA256 = SFalse
-
-{-# INLINE bFEAT_SHA3 #-}
-bFEAT_SHA3 = False
-
-{-# INLINE sFEAT_SHA3 #-}
-sFEAT_SHA3 = SFalse
-
-{-# INLINE bFEAT_SHA512 #-}
-bFEAT_SHA512 = False
-
-{-# INLINE sFEAT_SHA512 #-}
-sFEAT_SHA512 = SFalse
-
-{-# INLINE bFEAT_SPECRES #-}
-bFEAT_SPECRES = False
-
-{-# INLINE sFEAT_SPECRES #-}
-sFEAT_SPECRES = SFalse
-
-{-# INLINE bFEAT_SSBS #-}
-bFEAT_SSBS = False
-
-{-# INLINE sFEAT_SSBS #-}
-sFEAT_SSBS = SFalse
-
-{-# INLINE bFEAT_SVE #-}
-bFEAT_SVE = False
-
-{-# INLINE sFEAT_SVE #-}
-sFEAT_SVE = SFalse
-
-{-# INLINE bFEAT_SVE2 #-}
-bFEAT_SVE2 = False
-
-{-# INLINE sFEAT_SVE2 #-}
-sFEAT_SVE2 = SFalse
-
-#endif
