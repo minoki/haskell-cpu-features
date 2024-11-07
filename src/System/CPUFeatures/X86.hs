@@ -6,6 +6,7 @@
 module System.CPUFeatures.X86
   (AESNI, bAESNI, sAESNI
   ,AMX_BF16, bAMX_BF16, sAMX_BF16
+  ,AMX_FP16, bAMX_FP16, sAMX_FP16
   ,AMX_INT8, bAMX_INT8, sAMX_INT8
   ,AMX_TILE, bAMX_TILE, sAMX_TILE
   ,AVX, bAVX, sAVX
@@ -86,6 +87,7 @@ import GHC.Exts (Addr#)
 
 type family AESNI :: Bool
 type family AMX_BF16 :: Bool
+type family AMX_FP16 :: Bool
 type family AMX_INT8 :: Bool
 type family AMX_TILE :: Bool
 type family AVX :: Bool
@@ -154,6 +156,7 @@ type family VPCLMULQDQ :: Bool
 
 bAESNI :: Bool
 bAMX_BF16 :: Bool
+bAMX_FP16 :: Bool
 bAMX_INT8 :: Bool
 bAMX_TILE :: Bool
 bAVX :: Bool
@@ -224,6 +227,7 @@ mAVX10 :: Maybe Int
 
 sAESNI :: SBool AESNI
 sAMX_BF16 :: SBool AMX_BF16
+sAMX_FP16 :: SBool AMX_FP16
 sAMX_INT8 :: SBool AMX_INT8
 sAMX_TILE :: SBool AMX_TILE
 sAVX :: SBool AVX
@@ -323,6 +327,7 @@ mAVX10 | testBit (edx cpuid_07_1) 19 = let !version = fromIntegral (ebx cpuid_24
 
 bAESNI = testBit (ecx cpuid_01) 25
 bAMX_BF16 = testBit (edx cpuid_07_0) 22
+bAMX_FP16 = testBit (eax cpuid_07_1) 21
 bAMX_INT8 = testBit (edx cpuid_07_0) 25
 bAMX_TILE = testBit (edx cpuid_07_0) 24
 {-# NOINLINE bAVX #-}
@@ -398,6 +403,7 @@ bVPCLMULQDQ = testBit (ecx cpuid_07_0) 10
 
 sAESNI = unsafeBoolToSBool bAESNI
 sAMX_BF16 = unsafeBoolToSBool bAMX_BF16
+sAMX_FP16 = unsafeBoolToSBool bAMX_FP16
 sAMX_INT8 = unsafeBoolToSBool bAMX_INT8
 sAMX_TILE = unsafeBoolToSBool bAMX_TILE
 sAVX = unsafeBoolToSBool bAVX
@@ -468,6 +474,7 @@ sVPCLMULQDQ = unsafeBoolToSBool bVPCLMULQDQ
 
 type instance AESNI = False
 type instance AMX_BF16 = False
+type instance AMX_FP16 = False
 type instance AMX_INT8 = False
 type instance AMX_TILE = False
 type instance AVX = False
@@ -545,6 +552,12 @@ bAMX_BF16 = False
 
 {-# INLINE sAMX_BF16 #-}
 sAMX_BF16 = SFalse
+
+{-# INLINE bAMX_FP16 #-}
+bAMX_FP16 = False
+
+{-# INLINE sAMX_FP16 #-}
+sAMX_FP16 = SFalse
 
 {-# INLINE bAMX_INT8 #-}
 bAMX_INT8 = False

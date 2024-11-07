@@ -10,6 +10,7 @@ main :: IO ()
 main = do
   putStrLn $ "X86.AESNI = " ++ show X86.bAESNI
   putStrLn $ "X86.AMX_BF16 = " ++ show X86.bAMX_BF16
+  putStrLn $ "X86.AMX_FP16 = " ++ show X86.bAMX_FP16
   putStrLn $ "X86.AMX_INT8 = " ++ show X86.bAMX_INT8
   putStrLn $ "X86.AMX_TILE = " ++ show X86.bAMX_TILE
   putStrLn $ "X86.AVX = " ++ show X86.bAVX

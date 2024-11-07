@@ -1,6 +1,7 @@
 features_string = [[
 AESNI
 AMX_BF16
+AMX_FP16
 AMX_INT8
 AMX_TILE
 AVX
