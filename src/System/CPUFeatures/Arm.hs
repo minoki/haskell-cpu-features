@@ -5,6 +5,7 @@
 {-# LANGUAGE UnliftedFFITypes #-}
 module System.CPUFeatures.Arm
   (FEAT_AES, bFEAT_AES, sFEAT_AES
+  ,FEAT_AFP, bFEAT_AFP, sFEAT_AFP
   ,FEAT_BF16, bFEAT_BF16, sFEAT_BF16
   ,FEAT_BTI, bFEAT_BTI, sFEAT_BTI
   ,FEAT_CSV2, bFEAT_CSV2, sFEAT_CSV2
@@ -31,15 +32,21 @@ module System.CPUFeatures.Arm
   ,FEAT_PAuth2, bFEAT_PAuth2, sFEAT_PAuth2
   ,FEAT_PMULL, bFEAT_PMULL, sFEAT_PMULL
   ,FEAT_RDM, bFEAT_RDM, sFEAT_RDM
+  ,FEAT_RPRES, bFEAT_RPRES, sFEAT_RPRES
   ,FEAT_SB, bFEAT_SB, sFEAT_SB
   ,FEAT_SHA1, bFEAT_SHA1, sFEAT_SHA1
   ,FEAT_SHA256, bFEAT_SHA256, sFEAT_SHA256
   ,FEAT_SHA3, bFEAT_SHA3, sFEAT_SHA3
   ,FEAT_SHA512, bFEAT_SHA512, sFEAT_SHA512
+  ,FEAT_SME, bFEAT_SME, sFEAT_SME
+  ,FEAT_SME_F64F64, bFEAT_SME_F64F64, sFEAT_SME_F64F64
+  ,FEAT_SME_I16I64, bFEAT_SME_I16I64, sFEAT_SME_I16I64
+  ,FEAT_SME2, bFEAT_SME2, sFEAT_SME2
   ,FEAT_SPECRES, bFEAT_SPECRES, sFEAT_SPECRES
   ,FEAT_SSBS, bFEAT_SSBS, sFEAT_SSBS
   ,FEAT_SVE, bFEAT_SVE, sFEAT_SVE
   ,FEAT_SVE2, bFEAT_SVE2, sFEAT_SVE2
+  ,FEAT_WFxT, bFEAT_WFxT, sFEAT_WFxT
   ,SBool(..)
   ) where
 import System.CPUFeatures.Util
@@ -52,6 +59,7 @@ import Data.Bits
 #endif
 
 type family FEAT_AES :: Bool -- optional from Armv8.0
+type family FEAT_AFP :: Bool
 type family FEAT_BF16 :: Bool -- optional from Armv8.2, mandatory from Armv8.6
 type family FEAT_BTI :: Bool -- optional from Armv8.4, mandatory from Armv8.5
 type family FEAT_CSV2 :: Bool -- optional from Armv8.0, mandatory from Armv8.5
@@ -78,17 +86,24 @@ type family FEAT_PAuth :: Bool -- optional from Armv8.2, mandatory from Armv8.3
 type family FEAT_PAuth2 :: Bool -- optional from Armv8.2, mandatory from Armv8.6
 type family FEAT_PMULL :: Bool -- optional from Armv8.0
 type family FEAT_RDM :: Bool -- optional from Armv8.0
+type family FEAT_RPRES :: Bool -- optional from Armv8.0
 type family FEAT_SB :: Bool -- optional from Armv8.0, mandatory from Armv8.5
 type family FEAT_SHA1 :: Bool -- optional from Armv8.0
 type family FEAT_SHA256 :: Bool -- optional from Armv8.0
 type family FEAT_SHA3 :: Bool -- optional from Armv8.1
 type family FEAT_SHA512 :: Bool -- optional from Armv8.1
+type family FEAT_SME :: Bool
+type family FEAT_SME_F64F64 :: Bool
+type family FEAT_SME_I16I64 :: Bool
+type family FEAT_SME2 :: Bool
 type family FEAT_SPECRES :: Bool -- optional from Armv8.0, mandatory from Armv8.5
 type family FEAT_SSBS :: Bool -- optional from Armv8.0
 type family FEAT_SVE :: Bool -- optional from Armv8.2
 type family FEAT_SVE2 :: Bool -- optional from Armv9.0
+type family FEAT_WFxT :: Bool
 
 bFEAT_AES :: Bool
+bFEAT_AFP :: Bool
 bFEAT_BF16 :: Bool
 bFEAT_BTI :: Bool
 bFEAT_CSV2 :: Bool
@@ -115,17 +130,24 @@ bFEAT_PAuth :: Bool
 bFEAT_PAuth2 :: Bool
 bFEAT_PMULL :: Bool
 bFEAT_RDM :: Bool
+bFEAT_RPRES :: Bool
 bFEAT_SB :: Bool
 bFEAT_SHA1 :: Bool
 bFEAT_SHA256 :: Bool
 bFEAT_SHA3 :: Bool
 bFEAT_SHA512 :: Bool
+bFEAT_SME :: Bool
+bFEAT_SME_F64F64 :: Bool
+bFEAT_SME_I16I64 :: Bool
+bFEAT_SME2 :: Bool
 bFEAT_SPECRES :: Bool
 bFEAT_SSBS :: Bool
 bFEAT_SVE :: Bool
 bFEAT_SVE2 :: Bool
+bFEAT_WFxT :: Bool
 
 sFEAT_AES :: SBool FEAT_AES
+sFEAT_AFP :: SBool FEAT_AFP
 sFEAT_BF16 :: SBool FEAT_BF16
 sFEAT_BTI :: SBool FEAT_BTI
 sFEAT_CSV2 :: SBool FEAT_CSV2
@@ -152,15 +174,21 @@ sFEAT_PAuth :: SBool FEAT_PAuth
 sFEAT_PAuth2 :: SBool FEAT_PAuth2
 sFEAT_PMULL :: SBool FEAT_PMULL
 sFEAT_RDM :: SBool FEAT_RDM
+sFEAT_RPRES :: SBool FEAT_RPRES
 sFEAT_SB :: SBool FEAT_SB
 sFEAT_SHA1 :: SBool FEAT_SHA1
 sFEAT_SHA256 :: SBool FEAT_SHA256
 sFEAT_SHA3 :: SBool FEAT_SHA3
 sFEAT_SHA512 :: SBool FEAT_SHA512
+sFEAT_SME :: SBool FEAT_SME
+sFEAT_SME_F64F64 :: SBool FEAT_SME_F64F64
+sFEAT_SME_I16I64 :: SBool FEAT_SME_I16I64
+sFEAT_SME2 :: SBool FEAT_SME2
 sFEAT_SPECRES :: SBool FEAT_SPECRES
 sFEAT_SSBS :: SBool FEAT_SSBS
 sFEAT_SVE :: SBool FEAT_SVE
 sFEAT_SVE2 :: SBool FEAT_SVE2
+sFEAT_WFxT :: SBool FEAT_WFxT
 
 #if defined(aarch64_HOST_ARCH) && (defined(darwin_HOST_OS) || defined(linux_HOST_OS))
 
@@ -170,6 +198,9 @@ foreign import ccall unsafe hs_cpu_features_sysctl :: Addr# -> Bool
 
 {-# NOINLINE bFEAT_AES #-}
 bFEAT_AES = hs_cpu_features_sysctl "hw.optional.arm.FEAT_AES"#
+
+{-# NOINLINE bFEAT_AFP #-}
+bFEAT_AFP = hs_cpu_features_sysctl "hw.optional.arm.FEAT_AFP"#
 
 {-# NOINLINE bFEAT_BF16 #-}
 bFEAT_BF16 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_BF16"#
@@ -249,6 +280,9 @@ bFEAT_PMULL = hs_cpu_features_sysctl "hw.optional.arm.FEAT_PMULL"#
 {-# NOINLINE bFEAT_RDM #-}
 bFEAT_RDM = hs_cpu_features_sysctl "hw.optional.arm.FEAT_RDM"#
 
+{-# NOINLINE bFEAT_RPRES #-}
+bFEAT_RPRES = hs_cpu_features_sysctl "hw.optional.arm.FEAT_RPRES"#
+
 {-# NOINLINE bFEAT_SB #-}
 bFEAT_SB = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SB"#
 
@@ -264,6 +298,18 @@ bFEAT_SHA3 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SHA3"#
 {-# NOINLINE bFEAT_SHA512 #-}
 bFEAT_SHA512 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SHA512"#
 
+{-# NOINLINE bFEAT_SME #-}
+bFEAT_SME = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SME"#
+
+{-# NOINLINE bFEAT_SME_F64F64 #-}
+bFEAT_SME_F64F64 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SME_F64F64"#
+
+{-# NOINLINE bFEAT_SME_I16I64 #-}
+bFEAT_SME_I16I64 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SME_I16I64"#
+
+{-# NOINLINE bFEAT_SME2 #-}
+bFEAT_SME2 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SME2"#
+
 {-# NOINLINE bFEAT_SPECRES #-}
 bFEAT_SPECRES = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SPECRES"#
 
@@ -276,9 +322,13 @@ bFEAT_SVE = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SVE"#
 {-# NOINLINE bFEAT_SVE2 #-}
 bFEAT_SVE2 = hs_cpu_features_sysctl "hw.optional.arm.FEAT_SVE2"#
 
+{-# NOINLINE bFEAT_WFxT #-}
+bFEAT_WFxT = hs_cpu_features_sysctl "hw.optional.arm.FEAT_WFxT"#
+
 #elif defined(linux_HOST_OS)
 
 bFEAT_AES = hwcap .&. hwcap_AES /= 0
+bFEAT_AFP = hwcap2 .&. hwcap2_AFP /= 0
 bFEAT_BF16 = hwcap2 .&. hwcap2_BF16 /= 0
 bFEAT_BTI = hwcap2 .&. hwcap2_BTI /= 0
 bFEAT_CSV2 = False
@@ -305,15 +355,21 @@ bFEAT_PAuth = hwcap .&. hwcap_PACA /= 0
 bFEAT_PAuth2 = False
 bFEAT_PMULL = hwcap .&. hwcap_PMULL /= 0
 bFEAT_RDM = hwcap .&. hwcap_ASIMDRDM /= 0
+bFEAT_RPRES = hwcap2 .&. hwcap2_RPRES /= 0
 bFEAT_SB = hwcap .&. hwcap_SB /= 0
 bFEAT_SHA1 = hwcap .&. hwcap_SHA1 /= 0
 bFEAT_SHA256 = hwcap .&. hwcap_SHA2 /= 0
 bFEAT_SHA3 = hwcap .&. hwcap_SHA3 /= 0
 bFEAT_SHA512 = hwcap .&. hwcap_SHA512 /= 0
+bFEAT_SME = hwcap2 .&. hwcap2_SME /= 0
+bFEAT_SME_F64F64 = hwcap2 .&. hwcap2_SME_F64F64 /= 0
+bFEAT_SME_I16I64 = hwcap2 .&. hwcap2_SME_I16I64 /= 0
+bFEAT_SME2 = hwcap2 .&. hwcap2_SME2 /= 0
 bFEAT_SPECRES = False
 bFEAT_SSBS = hwcap .&. hwcap_SSBS /= 0 -- FEAT_SSB2?
 bFEAT_SVE = hwcap .&. hwcap_SVE /= 0
 bFEAT_SVE2 = hwcap2 .&. hwcap2_SVE2 /= 0
+bFEAT_WFxT = hwcap2 .&. hwcap2_WFXT /= 0
 
 #else
 #error bug
@@ -323,6 +379,9 @@ bFEAT_SVE2 = hwcap2 .&. hwcap2_SVE2 /= 0
 
 {-# INLINE bFEAT_AES #-}
 bFEAT_AES = False
+
+{-# INLINE bFEAT_AFP #-}
+bFEAT_AFP = False
 
 {-# INLINE bFEAT_BF16 #-}
 bFEAT_BF16 = False
@@ -402,6 +461,9 @@ bFEAT_PMULL = False
 {-# INLINE bFEAT_RDM #-}
 bFEAT_RDM = False
 
+{-# INLINE bFEAT_RPRES #-}
+bFEAT_RPRES = False
+
 {-# INLINE bFEAT_SB #-}
 bFEAT_SB = False
 
@@ -417,6 +479,18 @@ bFEAT_SHA3 = False
 {-# INLINE bFEAT_SHA512 #-}
 bFEAT_SHA512 = False
 
+{-# INLINE bFEAT_SME #-}
+bFEAT_SME = False
+
+{-# INLINE bFEAT_SME_F64F64 #-}
+bFEAT_SME_F64F64 = False
+
+{-# INLINE bFEAT_SME_I16I64 #-}
+bFEAT_SME_I16I64 = False
+
+{-# INLINE bFEAT_SME2 #-}
+bFEAT_SME2 = False
+
 {-# INLINE bFEAT_SPECRES #-}
 bFEAT_SPECRES = False
 
@@ -429,9 +503,13 @@ bFEAT_SVE = False
 {-# INLINE bFEAT_SVE2 #-}
 bFEAT_SVE2 = False
 
+{-# INLINE bFEAT_WFxT #-}
+bFEAT_WFxT = False
+
 #endif
 
 sFEAT_AES = unsafeBoolToSBool bFEAT_AES
+sFEAT_AFP = unsafeBoolToSBool bFEAT_AFP
 sFEAT_BF16 = unsafeBoolToSBool bFEAT_BF16
 sFEAT_BTI = unsafeBoolToSBool bFEAT_BTI
 sFEAT_CSV2 = unsafeBoolToSBool bFEAT_CSV2
@@ -458,12 +536,18 @@ sFEAT_PAuth = unsafeBoolToSBool bFEAT_PAuth
 sFEAT_PAuth2 = unsafeBoolToSBool bFEAT_PAuth2
 sFEAT_PMULL = unsafeBoolToSBool bFEAT_PMULL
 sFEAT_RDM = unsafeBoolToSBool bFEAT_RDM
+sFEAT_RPRES = unsafeBoolToSBool bFEAT_RPRES
 sFEAT_SB = unsafeBoolToSBool bFEAT_SB
 sFEAT_SHA1 = unsafeBoolToSBool bFEAT_SHA1
 sFEAT_SHA256 = unsafeBoolToSBool bFEAT_SHA256
 sFEAT_SHA3 = unsafeBoolToSBool bFEAT_SHA3
 sFEAT_SHA512 = unsafeBoolToSBool bFEAT_SHA512
+sFEAT_SME = unsafeBoolToSBool bFEAT_SME
+sFEAT_SME_F64F64 = unsafeBoolToSBool bFEAT_SME_F64F64
+sFEAT_SME_I16I64 = unsafeBoolToSBool bFEAT_SME_I16I64
+sFEAT_SME2 = unsafeBoolToSBool bFEAT_SME2
 sFEAT_SPECRES = unsafeBoolToSBool bFEAT_SPECRES
 sFEAT_SSBS = unsafeBoolToSBool bFEAT_SSBS
 sFEAT_SVE = unsafeBoolToSBool bFEAT_SVE
 sFEAT_SVE2 = unsafeBoolToSBool bFEAT_SVE2
+sFEAT_WFxT = unsafeBoolToSBool bFEAT_WFxT

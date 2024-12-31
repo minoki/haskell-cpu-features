@@ -170,3 +170,24 @@ hwcap2_BTI = #{const HWCAP2_BTI}
 
 hwcap2_MTE :: CULong
 hwcap2_MTE = #{const HWCAP2_MTE}
+
+hwcap2_AFP :: CULong
+hwcap2_AFP = #{const HWCAP2_AFP}
+
+hwcap2_RPRES :: CULong
+hwcap2_RPRES = #{const HWCAP2_RPRES}
+
+hwcap2_SME :: CULong
+hwcap2_SME = #{const HWCAP2_SME}
+
+hwcap2_SME_F64F64 :: CULong
+hwcap2_SME_F64F64 = #{const HWCAP2_SME_F64F64}
+
+hwcap2_SME_I16I64 :: CULong
+hwcap2_SME_I16I64 = #{const HWCAP2_SME_I16I64}
+
+hwcap2_SME2 :: CULong
+hwcap2_SME2 = #{const HWCAP2_SME2}
+
+hwcap2_WFXT :: CULong
+hwcap2_WFXT = #{const HWCAP2_WFXT}

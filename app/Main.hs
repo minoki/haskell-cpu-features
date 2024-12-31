@@ -77,6 +77,7 @@ main = do
   putStrLn $ "X86.VAES = " ++ show X86.bVAES
   putStrLn $ "X86.VPCLMULQDQ = " ++ show X86.bVPCLMULQDQ
   putStrLn $ "Arm.FEAT_AES = " ++ show Arm.bFEAT_AES
+  putStrLn $ "Arm.FEAT_AFP = " ++ show Arm.bFEAT_AFP
   putStrLn $ "Arm.FEAT_BF16 = " ++ show Arm.bFEAT_BF16
   putStrLn $ "Arm.FEAT_BTI = " ++ show Arm.bFEAT_BTI
   putStrLn $ "Arm.FEAT_CSV2 = " ++ show Arm.bFEAT_CSV2
@@ -103,15 +104,21 @@ main = do
   putStrLn $ "Arm.FEAT_PAuth2 = " ++ show Arm.bFEAT_PAuth2
   putStrLn $ "Arm.FEAT_PMULL = " ++ show Arm.bFEAT_PMULL
   putStrLn $ "Arm.FEAT_RDM = " ++ show Arm.bFEAT_RDM
+  putStrLn $ "Arm.FEAT_RPRES = " ++ show Arm.bFEAT_RPRES
   putStrLn $ "Arm.FEAT_SB = " ++ show Arm.bFEAT_SB
   putStrLn $ "Arm.FEAT_SHA1 = " ++ show Arm.bFEAT_SHA1
   putStrLn $ "Arm.FEAT_SHA256 = " ++ show Arm.bFEAT_SHA256
   putStrLn $ "Arm.FEAT_SHA3 = " ++ show Arm.bFEAT_SHA3
   putStrLn $ "Arm.FEAT_SHA512 = " ++ show Arm.bFEAT_SHA512
+  putStrLn $ "Arm.FEAT_SME = " ++ show Arm.bFEAT_SME
+  putStrLn $ "Arm.FEAT_SME_F64F64 = " ++ show Arm.bFEAT_SME_F64F64
+  putStrLn $ "Arm.FEAT_SME_I16I64 = " ++ show Arm.bFEAT_SME_I16I64
+  putStrLn $ "Arm.FEAT_SME2 = " ++ show Arm.bFEAT_SME2
   putStrLn $ "Arm.FEAT_SPECRES = " ++ show Arm.bFEAT_SPECRES
   putStrLn $ "Arm.FEAT_SSBS = " ++ show Arm.bFEAT_SSBS
   putStrLn $ "Arm.FEAT_SVE = " ++ show Arm.bFEAT_SVE
   putStrLn $ "Arm.FEAT_SVE2 = " ++ show Arm.bFEAT_SVE2
+  putStrLn $ "Arm.FEAT_WFxT = " ++ show Arm.bFEAT_WFxT
   -- putStrLn $ "polynomial multiplication: " ++ show (X86I.clmul 0xdeadbeef 0xcafecafe) -- compile error
   case X86.sPCLMULQDQ of
     STrue -> putStrLn $ "polynomial multiplication using x86 clmul: " ++ show (X86I.clmul 0xdeadbeefdeadbeef 0xcafecafec0ffee12)
