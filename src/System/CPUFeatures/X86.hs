@@ -321,8 +321,12 @@ foreign import ccall unsafe hs_cpu_features_sysctl :: Addr# -> Bool
 #endif
 
 {-# NOINLINE mAVX10 #-}
-mAVX10 | testBit (edx cpuid_07_1) 19 = let !version = fromIntegral (ebx cpuid_24_0 .&. 0xff)
-                                       in Just version
+mAVX10 | testBit (edx cpuid_07_1) 19
+       , testBit (ecx cpuid_01) 27 -- OSXSAVE
+       , (xgetbv 0 .&. 0xe6) == 0xe6 -- opmask, upper ZMM[0-15], ZMM[16-31], XMM, YMM
+       , testBit (ebx cpuid_24_0) 17 -- AVX10/256
+       = let !version = fromIntegral (ebx cpuid_24_0 .&. 0xff)
+         in Just version
        | otherwise = Nothing
 
 bAESNI = testBit (ecx cpuid_01) 25
@@ -335,7 +339,7 @@ bAVX = (ecx cpuid_01 .&. (bit 27 .|. bit 28)) == bit 27 .|. bit 28 && (xgetbv 0 
 bAVX_VNNI = testBit (eax cpuid_07_1) 4
 bAVX10_1 = mAVX10 >= Just 1
 bAVX10_2 = mAVX10 >= Just 2
-bAVX10_VL256 = isJust mAVX10 && testBit (ebx cpuid_24_0) 17
+bAVX10_VL256 = isJust mAVX10 -- mAVX10 checks for VL256
 bAVX10_VL512 = isJust mAVX10 && testBit (ebx cpuid_24_0) 18
 bAVX2 = bAVX && testBit (ebx cpuid_07_0) 5
 bAVX512_BF16 = bAVX512F && testBit (eax cpuid_07_1) 5
@@ -379,7 +383,7 @@ bAVX512DQ_VL512 = bAVX512DQ || (bAVX10_1 && bAVX10_VL512)
 #if defined(darwin_HOST_OS)
 bAVX512F = hs_cpu_features_sysctl "hw.optional.avx512f"# -- AVX-512 support on macOS is on-demand, that is, XCR0 is cleared by default.
 #else
-bAVX512F = (ecx cpuid_01 .&. bit 27) == bit 27 && (xgetbv 0 .&. 0xe6) == 0xe6 && testBit (ebx cpuid_07_0) 16 -- CPUID.1:ECX[bit 27]: OSXSAVE
+bAVX512F = testBit (ecx cpuid_01) 27 && (xgetbv 0 .&. 0xe6) == 0xe6 && testBit (ebx cpuid_07_0) 16 -- CPUID.1:ECX[bit 27]: OSXSAVE
 #endif
 bAVX512F_SCALAR = bAVX512F || (bAVX10_1 && bAVX10_VL256)
 bAVX512F_VL256 = (bAVX512F && bAVX512VL) || (bAVX10_1 && bAVX10_VL256)
