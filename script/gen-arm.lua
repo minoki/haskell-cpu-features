@@ -72,12 +72,21 @@ elseif arg[1] == "test" then
   for _, name in ipairs(features) do
     io.write(string.format("  putStrLn $ \"Arm.%s = \" ++ show Arm.b%s\n", name, name))
   end
-elseif arg[1] == "export" then
+elseif arg[1] == "bool_export" then
   for i, name in ipairs(features) do
     if i == 1 then
-      io.write(string.format("  (%s, b%s, s%s\n", name, name, name))
+      io.write(string.format("  (b%s\n", name))
     else
-      io.write(string.format("  ,%s, b%s, s%s\n", name, name, name))
+      io.write(string.format("  ,b%s\n", name))
+    end
+  end
+  io.write("  ) where\n")
+elseif arg[1] == "typebool_export" then
+  for i, name in ipairs(features) do
+    if i == 1 then
+      io.write(string.format("  (%s, s%s\n", name, name))
+    else
+      io.write(string.format("  ,%s, s%s\n", name, name))
     end
   end
   io.write("  ,SBool(..)\n")

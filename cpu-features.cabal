@@ -19,8 +19,12 @@ common warnings
 library
     import:           warnings
     exposed-modules:  System.CPUFeatures.X86
+                      System.CPUFeatures.X86.Bool
+                      System.CPUFeatures.X86.TypeBool
                       System.CPUFeatures.X86.Cpuid
                       System.CPUFeatures.Arm
+                      System.CPUFeatures.Arm.Bool
+                      System.CPUFeatures.Arm.TypeBool
                       System.CPUFeatures.Util
     -- other-modules:
     -- other-extensions:

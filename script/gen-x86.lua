@@ -43,16 +43,16 @@ for s in string.gmatch(features_string, "[%w_]+") do
   table.insert(features, s)
 end
 
-if arg[1] == "decl" then
-  for _, name in ipairs(features) do
-    io.write(string.format("type family %s :: Bool\n", name))
-  end
-  io.write("\n")
+if arg[1] == "bool_decl" then
   for _, name in ipairs(features) do
     io.write(string.format("b%s :: Bool\n", name))
   end
   io.write("\n")
   io.write("mAVX10 :: Maybe Int\n")
+elseif arg[1] == "typebool_decl" then
+  for _, name in ipairs(features) do
+    io.write(string.format("type family %s :: Bool\n", name))
+  end
   io.write("\n")
   for _, name in ipairs(features) do
     io.write(string.format("s%s :: SBool %s\n", name, name))
@@ -69,15 +69,24 @@ elseif arg[1] == "test" then
   for _, name in ipairs(features) do
     io.write(string.format("  putStrLn $ \"X86.%s = \" ++ show X86.b%s\n", name, name))
   end
-elseif arg[1] == "export" then
+elseif arg[1] == "bool_export" then
   for i, name in ipairs(features) do
     if i == 1 then
-      io.write(string.format("  (%s, b%s, s%s\n", name, name, name))
+      io.write(string.format("  (b%s\n", name))
     else
-      io.write(string.format("  ,%s, b%s, s%s\n", name, name, name))
+      io.write(string.format("  ,b%s\n", name))
     end
   end
   io.write("  ,mAVX10\n")
+  io.write("  ) where\n")
+elseif arg[1] == "typebool_export" then
+  for i, name in ipairs(features) do
+    if i == 1 then
+      io.write(string.format("  (%s, s%s\n", name, name))
+    else
+      io.write(string.format("  ,%s, s%s\n", name, name))
+    end
+  end
   io.write("  ,SBool(..)\n")
   io.write("  ) where\n")
 end
