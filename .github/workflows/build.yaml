@@ -1,0 +1,37 @@
+on: [push, pull_request]
+name: Build and test
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        ghc: ['9.2', '9.4', '9.6', '9.8', '9.10', '9.12']
+        os: [ubuntu-24.04, macos-13, macos-14, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: haskell-actions/setup@v2
+        name: Setup Haskell
+        with:
+          ghc-version: ${{ matrix.ghc }}
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cabal/packages
+            ~/.cabal/store
+          key: ${{ runner.os }}-${{ matrix.ghc }}
+
+      - name: Configure
+        run: cabal configure --ghc-options="-dcore-lint -dstg-lint -dcmm-lint -dasm-lint -fllvm-fill-undef-with-garbage -debug -fcheck-prim-bounds -fno-ignore-asserts" --enable-test --enable-benchmarks
+        # -dlint requires GHC 9.4 or later
+
+      - name: Build
+        run: cabal build
+
+      - name: Test
+        run: cabal test
+
+      - name: Run
+        run: cabal run
