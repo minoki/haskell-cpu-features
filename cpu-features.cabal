@@ -1,7 +1,7 @@
 cabal-version:      3.0
 name:               cpu-features
 version:            0.1.0.0
--- synopsis:
+synopsis:           A library to detect CPU features
 -- description:
 license:            BSD-3-Clause
 license-file:       LICENSE
