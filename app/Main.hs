@@ -2,9 +2,7 @@
 module Main where
 
 import System.CPUFeatures.X86 as X86
-import System.CPUFeatures.X86.Intrinsics as X86I
 import System.CPUFeatures.Arm as Arm
-import System.CPUFeatures.Arm.Intrinsics as ArmI
 
 main :: IO ()
 main = do
@@ -119,11 +117,3 @@ main = do
   putStrLn $ "Arm.FEAT_SVE = " ++ show Arm.bFEAT_SVE
   putStrLn $ "Arm.FEAT_SVE2 = " ++ show Arm.bFEAT_SVE2
   putStrLn $ "Arm.FEAT_WFxT = " ++ show Arm.bFEAT_WFxT
-  -- putStrLn $ "polynomial multiplication: " ++ show (X86I.clmul 0xdeadbeef 0xcafecafe) -- compile error
-  case X86.sPCLMULQDQ of
-    STrue -> putStrLn $ "polynomial multiplication using x86 clmul: " ++ show (X86I.clmul 0xdeadbeefdeadbeef 0xcafecafec0ffee12)
-    SFalse -> putStrLn "x86 clmul not available"
-  -- putStrLn $ "polynomial multiplication: " ++ show (ArmI.polymul 0xdeadbeef 0xcafecafe) -- compile error
-  case Arm.sFEAT_PMULL of
-    STrue -> putStrLn $ "polynomial multiplication using Arm pmull: " ++ show (ArmI.polymul 0xdeadbeefdeadbeef 0xcafecafec0ffee12)
-    SFalse -> putStrLn "Arm pmull not available"

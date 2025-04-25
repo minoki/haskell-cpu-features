@@ -20,9 +20,7 @@ library
     import:           warnings
     exposed-modules:  System.CPUFeatures.X86
                       System.CPUFeatures.X86.Cpuid
-                      System.CPUFeatures.X86.Intrinsics
                       System.CPUFeatures.Arm
-                      System.CPUFeatures.Arm.Intrinsics
                       System.CPUFeatures.Util
     -- other-modules:
     -- other-extensions:
@@ -32,9 +30,6 @@ library
       other-modules:  Hwcap
     if arch(x86_64)
       c-sources:      cbits/cpuid.c
-                      cbits/x86_clmul.c
-    if arch(aarch64)
-      c-sources:      cbits/arm_poly.c
     build-depends:    base >=4.18.0.0 && <4.21
     hs-source-dirs:   src
     default-language: GHC2021
@@ -62,14 +57,3 @@ test-suite cpu-features-test
     build-depends:
         base >=4.18.0.0 && <4.21,
         cpu-features
-
-benchmark cpu-features-benchmark
-    import:           warnings
-    default-language: GHC2021
-    type:             exitcode-stdio-1.0
-    main-is:          Benchmark.hs
-    hs-source-dirs:   benchmark
-    build-depends:
-        base >=4.18.0.0 && <4.21,
-        cpu-features,
-        criterion ^>=1.6.3.0
