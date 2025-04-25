@@ -45,7 +45,7 @@ module System.CPUFeatures.X86.Bool
 #if defined(x86_64_HOST_ARCH)
 import System.CPUFeatures.X86.Cpuid
 import Data.Bits
-import Data.Maybe (isJust)
+-- import Data.Maybe (isJust)
 #if defined(darwin_HOST_OS)
 import GHC.Exts (Addr#)
 #endif
@@ -110,9 +110,10 @@ cpuid_07_1 = cpuid 0x7 1
 cpuid_24_0 :: CpuidResult
 cpuid_24_0 = cpuid 0x24 0
 
-{-# NOINLINE cpuid_24_1 #-}
-cpuid_24_1 :: CpuidResult
-cpuid_24_1 = cpuid 0x24 1
+-- May be used by future AVX10
+-- {-# NOINLINE cpuid_24_1 #-}
+-- cpuid_24_1 :: CpuidResult
+-- cpuid_24_1 = cpuid 0x24 1
 
 #if defined(darwin_HOST_OS)
 foreign import ccall unsafe hs_cpu_features_sysctl :: Addr# -> Bool
