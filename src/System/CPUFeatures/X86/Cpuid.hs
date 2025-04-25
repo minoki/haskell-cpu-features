@@ -1,8 +1,17 @@
 {-# LANGUAGE CPP #-}
-module System.CPUFeatures.X86.Cpuid (CpuidResult(..), X86Cpuid(..), queryCpuid, Dict(..)) where
+{-# LANGUAGE MonoLocalBinds #-}
+module System.CPUFeatures.X86.Cpuid
+  ( CpuidResult(..)
+  , X86Cpuid(..)
+  , queryCpuid
+  , getManufacturerString
+  , Dict(Dict)
+  ) where
 import Data.Word
 import System.CPUFeatures.Util
 #if defined(x86_64_HOST_ARCH)
+import Data.Bits
+import Data.Char (chr)
 import System.IO.Unsafe
 import Foreign.Marshal.Alloc
 import Foreign.Storable
@@ -18,6 +27,8 @@ class X86Cpuid where
   xgetbv :: Word32 -> Word64
 
 queryCpuid :: Maybe (Dict X86Cpuid)
+
+getManufacturerString :: X86Cpuid => String
 
 #if defined(x86_64_HOST_ARCH)
 
@@ -37,8 +48,15 @@ instance X86Cpuid where
 
 queryCpuid = Just Dict
 
+getManufacturerString = case cpuid 0 0 of
+  CpuidResult _ b c d -> wordToChars b $ wordToChars d $ wordToChars c ""
+  where
+    bchr = chr . fromIntegral
+    wordToChars x s = bchr (fromIntegral $ x .&. 0xFF) : bchr ((x `unsafeShiftR` 8) .&. 0xFF) : bchr ((x `unsafeShiftR` 16) .&. 0xFF) : bchr ((x `unsafeShiftR` 24) .&. 0xFF) : s
+
 #else
 
 queryCpuid = Nothing
+getManufacturerString = undefined
 
 #endif

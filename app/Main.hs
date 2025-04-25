@@ -2,10 +2,14 @@
 module Main where
 
 import System.CPUFeatures.X86 as X86
+import System.CPUFeatures.X86.Cpuid as X86
 import System.CPUFeatures.Arm as Arm
 
 main :: IO ()
 main = do
+  case X86.queryCpuid of
+    Just Dict -> putStrLn $ "X86 Manufacturer: " ++ getManufacturerString
+    Nothing -> putStrLn "Not X86"
   putStrLn $ "X86.AESNI = " ++ show X86.bAESNI
   putStrLn $ "X86.AMX_BF16 = " ++ show X86.bAMX_BF16
   putStrLn $ "X86.AMX_FP16 = " ++ show X86.bAMX_FP16
