@@ -89,4 +89,14 @@ elseif arg[1] == "typebool_export" then
   end
   io.write("  ,SBool(..)\n")
   io.write("  ) where\n")
+elseif arg[1] == "constraint_export" then
+  for i, name in ipairs(features) do
+    if i == 1 then
+      io.write(string.format("  (Has%s, query%s\n", name, name))
+    else
+      io.write(string.format("  ,Has%s, query%s\n", name, name))
+    end
+  end
+  io.write("  ,Dict(Dict)\n")
+  io.write("  ) where\n")
 end
