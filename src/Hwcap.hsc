@@ -1,6 +1,10 @@
 {-# LANGUAGE CApiFFI #-}
 module Hwcap where
 import Foreign.C.Types
+#if defined(riscv64_HOST_ARCH)
+import Data.Char (ord)
+import Data.Bits (bit)
+#endif
 
 #include <sys/auxv.h>
 
@@ -17,6 +21,8 @@ hwcap2 = getauxval #{const AT_HWCAP2}
 #else
 hwcap2 = 0
 #endif
+
+#if defined(aarch64_HOST_ARCH)
 
 hwcap_FP :: CULong
 hwcap_FP = #{const HWCAP_FP}
@@ -191,3 +197,28 @@ hwcap2_SME2 = #{const HWCAP2_SME2}
 
 hwcap2_WFXT :: CULong
 hwcap2_WFXT = #{const HWCAP2_WFXT}
+
+#elif defined(riscv64_HOST_ARCH)
+
+hwcap_I :: CULong
+hwcap_I = bit (ord 'I' - ord 'A')
+
+hwcap_M :: CULong
+hwcap_M = bit (ord 'M' - ord 'A')
+
+hwcap_A :: CULong
+hwcap_A = bit (ord 'A' - ord 'A')
+
+hwcap_F :: CULong
+hwcap_F = bit (ord 'F' - ord 'A')
+
+hwcap_D :: CULong
+hwcap_D = bit (ord 'D' - ord 'A')
+
+hwcap_C :: CULong
+hwcap_C = bit (ord 'C' - ord 'A')
+
+hwcap_V :: CULong
+hwcap_V = bit (ord 'V' - ord 'A')
+
+#endif

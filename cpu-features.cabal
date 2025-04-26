@@ -29,6 +29,11 @@ library
                       System.CPUFeatures.Arm.TypeBool
                       System.CPUFeatures.Arm.Constraint
                       System.CPUFeatures.Arm.Constraint.Unsafe
+                      System.CPUFeatures.RISCV
+                      System.CPUFeatures.RISCV.Bool
+                      System.CPUFeatures.RISCV.TypeBool
+                      System.CPUFeatures.RISCV.Constraint
+                      System.CPUFeatures.RISCV.Constraint.Unsafe
                       System.CPUFeatures.Util
     -- other-modules:
     -- other-extensions:
@@ -38,6 +43,9 @@ library
       other-modules:  Hwcap
     if arch(x86_64)
       c-sources:      cbits/cpuid.c
+    if os(linux) && arch(riscv64)
+      other-modules:  Hwcap Hwprobe
+      c-sources:      cbits/hwprobe.c
     build-depends:    base >=4.16.0.0 && <4.22
     hs-source-dirs:   src
     default-language: GHC2021

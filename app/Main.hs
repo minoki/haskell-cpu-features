@@ -4,6 +4,7 @@ module Main where
 import System.CPUFeatures.X86 as X86
 import System.CPUFeatures.X86.Cpuid as X86
 import System.CPUFeatures.Arm as Arm
+import System.CPUFeatures.RISCV as RISCV
 
 main :: IO ()
 main = do
@@ -91,3 +92,60 @@ main = do
   putStrLn $ "Arm.FEAT_SVE = " ++ show Arm.bFEAT_SVE
   putStrLn $ "Arm.FEAT_SVE2 = " ++ show Arm.bFEAT_SVE2
   putStrLn $ "Arm.FEAT_WFxT = " ++ show Arm.bFEAT_WFxT
+  putStrLn $ "RISCV.C = " ++ show RISCV.bC
+  putStrLn $ "RISCV.V = " ++ show RISCV.bV
+  putStrLn $ "RISCV.Zba = " ++ show RISCV.bZba
+  putStrLn $ "RISCV.Zbb = " ++ show RISCV.bZbb
+  putStrLn $ "RISCV.Zbs = " ++ show RISCV.bZbs
+  putStrLn $ "RISCV.Zicboz = " ++ show RISCV.bZicboz
+  putStrLn $ "RISCV.Zbc = " ++ show RISCV.bZbc
+  putStrLn $ "RISCV.Zbkb = " ++ show RISCV.bZbkb
+  putStrLn $ "RISCV.Zbkc = " ++ show RISCV.bZbkc
+  putStrLn $ "RISCV.Zbkx = " ++ show RISCV.bZbkx
+  putStrLn $ "RISCV.Zknd = " ++ show RISCV.bZknd
+  putStrLn $ "RISCV.Zkne = " ++ show RISCV.bZkne
+  putStrLn $ "RISCV.Zknh = " ++ show RISCV.bZknh
+  putStrLn $ "RISCV.Zksed = " ++ show RISCV.bZksed
+  putStrLn $ "RISCV.Zksh = " ++ show RISCV.bZksh
+  putStrLn $ "RISCV.Zkt = " ++ show RISCV.bZkt
+  putStrLn $ "RISCV.Zvbb = " ++ show RISCV.bZvbb
+  putStrLn $ "RISCV.Zvbc = " ++ show RISCV.bZvbc
+  putStrLn $ "RISCV.Zvkb = " ++ show RISCV.bZvkb
+  putStrLn $ "RISCV.Zvkg = " ++ show RISCV.bZvkg
+  putStrLn $ "RISCV.Zvkned = " ++ show RISCV.bZvkned
+  putStrLn $ "RISCV.Zvknha = " ++ show RISCV.bZvknha
+  putStrLn $ "RISCV.Zvknhb = " ++ show RISCV.bZvknhb
+  putStrLn $ "RISCV.Zvksed = " ++ show RISCV.bZvksed
+  putStrLn $ "RISCV.Zvksh = " ++ show RISCV.bZvksh
+  putStrLn $ "RISCV.Zvkt = " ++ show RISCV.bZvkt
+  putStrLn $ "RISCV.Zfh = " ++ show RISCV.bZfh
+  putStrLn $ "RISCV.Zfhmin = " ++ show RISCV.bZfhmin
+  putStrLn $ "RISCV.Zihintntl = " ++ show RISCV.bZihintntl
+  putStrLn $ "RISCV.Zvfh = " ++ show RISCV.bZvfh
+  putStrLn $ "RISCV.Zvfhmin = " ++ show RISCV.bZvfhmin
+  putStrLn $ "RISCV.Zfa = " ++ show RISCV.bZfa
+  putStrLn $ "RISCV.Ztso = " ++ show RISCV.bZtso
+  putStrLn $ "RISCV.Zacas = " ++ show RISCV.bZacas
+  putStrLn $ "RISCV.Zicntr = " ++ show RISCV.bZicntr
+  putStrLn $ "RISCV.Zicond = " ++ show RISCV.bZicond
+  putStrLn $ "RISCV.Zihintpause = " ++ show RISCV.bZihintpause
+  putStrLn $ "RISCV.Zihpm = " ++ show RISCV.bZihpm
+  putStrLn $ "RISCV.Zve32x = " ++ show RISCV.bZve32x
+  putStrLn $ "RISCV.Zve32f = " ++ show RISCV.bZve32f
+  putStrLn $ "RISCV.Zve64x = " ++ show RISCV.bZve64x
+  putStrLn $ "RISCV.Zve64f = " ++ show RISCV.bZve64f
+  putStrLn $ "RISCV.Zve64d = " ++ show RISCV.bZve64d
+  putStrLn $ "RISCV.Zimop = " ++ show RISCV.bZimop
+  putStrLn $ "RISCV.Zca = " ++ show RISCV.bZca
+  putStrLn $ "RISCV.Zcb = " ++ show RISCV.bZcb
+  putStrLn $ "RISCV.Zcd = " ++ show RISCV.bZcd
+  putStrLn $ "RISCV.Zcf = " ++ show RISCV.bZcf
+  putStrLn $ "RISCV.Zcmop = " ++ show RISCV.bZcmop
+  putStrLn $ "RISCV.Zawrs = " ++ show RISCV.bZawrs
+  putStrLn $ "RISCV.Zaamo = " ++ show RISCV.bZaamo
+  putStrLn $ "RISCV.Zalrsc = " ++ show RISCV.bZalrsc
+  putStrLn $ "RISCV.Supm = " ++ show RISCV.bSupm
+  putStrLn $ "RISCV.Zfbfmin = " ++ show RISCV.bZfbfmin
+  putStrLn $ "RISCV.Zvfbfmin = " ++ show RISCV.bZvfbfmin
+  putStrLn $ "RISCV.Zvfbfwma = " ++ show RISCV.bZvfbfwma
+  putStrLn $ "RISCV.Zicbom = " ++ show RISCV.bZicbom
