@@ -2,7 +2,7 @@ cabal-version:      3.0
 name:               cpu-features
 version:            0.1.0.0
 synopsis:           A library to detect CPU features
--- description:
+description:        This is a library to detect the features supported by the CPU running the Haskell program.
 license:            BSD-3-Clause
 license-file:       LICENSE
 author:             ARATA Mizuki
@@ -39,12 +39,12 @@ library
     -- other-extensions:
     if os(darwin)
       c-sources:      cbits/sysctl.c
-    if os(linux) && arch(aarch64)
+    if os(linux) && (arch(aarch64) || arch(riscv64))
       other-modules:  Hwcap
     if arch(x86_64) || arch(i386)
       c-sources:      cbits/cpuid.c
     if os(linux) && arch(riscv64)
-      other-modules:  Hwcap Hwprobe
+      other-modules:  Hwprobe
       c-sources:      cbits/hwprobe.c
     build-depends:    base >=4.16.0.0 && <4.22
     hs-source-dirs:   src
