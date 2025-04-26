@@ -8,6 +8,8 @@ license-file:       LICENSE
 author:             ARATA Mizuki
 maintainer:         minorinoki@gmail.com
 copyright:          2025 ARATA Mizuki
+homepage:           https://github.com/minoki/haskell-cpu-features
+bug-reports:        https://github.com/minoki/haskell-cpu-features/issues
 category:           System
 build-type:         Simple
 extra-doc-files:    README.md CHANGELOG.md
