@@ -33,5 +33,5 @@ jobs:
       - name: Test
         run: cabal test
 
-      - name: Run
-        run: cabal run
+      - name: Run demo
+        run: cabal run cpu-features-demo

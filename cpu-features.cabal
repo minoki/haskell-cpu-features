@@ -50,7 +50,7 @@ library
     hs-source-dirs:   src
     default-language: GHC2021
 
-executable cpu-features
+executable cpu-features-demo
     import:           warnings
     main-is:          Main.hs
     -- other-modules:
@@ -59,7 +59,7 @@ executable cpu-features
         base >=4.16.0.0 && <4.22,
         cpu-features
 
-    hs-source-dirs:   app
+    hs-source-dirs:   demo
     default-language: GHC2021
 
 test-suite cpu-features-test
