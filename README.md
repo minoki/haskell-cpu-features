@@ -4,7 +4,7 @@ This is a library to detect the features supported by the CPU running the Haskel
 
 Supported platforms:
 
-* x86_64: via `cpuid`
+* i386/x86_64: via `cpuid`
     * Windows
     * macOS: uses `sysctlbyname` to detect AVX-512
     * Linux

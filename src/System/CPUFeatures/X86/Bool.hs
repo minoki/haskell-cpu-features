@@ -48,7 +48,7 @@ module System.CPUFeatures.X86.Bool
   ,bVPCLMULQDQ
   ,mAVX10
   ) where
-#if defined(x86_64_HOST_ARCH)
+#if defined(x86_64_HOST_ARCH) || defined(i386_HOST_ARCH)
 import System.CPUFeatures.X86.Cpuid
 import Data.Bits
 -- import Data.Maybe (isJust)
@@ -98,7 +98,7 @@ bVPCLMULQDQ :: Bool
 
 mAVX10 :: Maybe Int
 
-#if defined(x86_64_HOST_ARCH)
+#if defined(x86_64_HOST_ARCH) || defined(i386_HOST_ARCH)
 
 {-# NOINLINE cpuid_01 #-}
 cpuid_01 :: CpuidResult

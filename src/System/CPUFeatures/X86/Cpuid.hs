@@ -9,7 +9,7 @@ module System.CPUFeatures.X86.Cpuid
   ) where
 import Data.Word
 import System.CPUFeatures.Util
-#if defined(x86_64_HOST_ARCH)
+#if defined(x86_64_HOST_ARCH) || defined(i386_HOST_ARCH)
 import Data.Bits
 import Data.Char (chr)
 import System.IO.Unsafe
@@ -30,7 +30,7 @@ queryCpuid :: Maybe (Dict X86Cpuid)
 
 getManufacturerString :: X86Cpuid => String
 
-#if defined(x86_64_HOST_ARCH)
+#if defined(x86_64_HOST_ARCH) || defined(i386_HOST_ARCH)
 
 foreign import ccall unsafe hs_cpu_features_cpuid :: Word32 -> Word32 -> Ptr Word32 -> IO ()
 

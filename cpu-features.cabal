@@ -41,7 +41,7 @@ library
       c-sources:      cbits/sysctl.c
     if os(linux) && arch(aarch64)
       other-modules:  Hwcap
-    if arch(x86_64)
+    if arch(x86_64) || arch(i386)
       c-sources:      cbits/cpuid.c
     if os(linux) && arch(riscv64)
       other-modules:  Hwcap Hwprobe
