@@ -115,14 +115,14 @@ instance FEAT_SHA512 ~ True => HasFEAT_SHA512
 class FEAT_SME ~ True => HasFEAT_SME
 instance FEAT_SME ~ True => HasFEAT_SME
 
-class (FEAT_SME_F64F64 ~ True, HasFEAT_SME) => HasFEAT_SME_F64F64
-instance (FEAT_SME_F64F64 ~ True, HasFEAT_SME) => HasFEAT_SME_F64F64
+class FEAT_SME_F64F64 ~ True => HasFEAT_SME_F64F64
+instance FEAT_SME_F64F64 ~ True => HasFEAT_SME_F64F64
 
-class (FEAT_SME_I16I64 ~ True, HasFEAT_SME) => HasFEAT_SME_I16I64
-instance (FEAT_SME_I16I64 ~ True, HasFEAT_SME) => HasFEAT_SME_I16I64
+class FEAT_SME_I16I64 ~ True => HasFEAT_SME_I16I64
+instance FEAT_SME_I16I64 ~ True => HasFEAT_SME_I16I64
 
-class (FEAT_SME2 ~ True, HasFEAT_SME) => HasFEAT_SME2
-instance (FEAT_SME2 ~ True, HasFEAT_SME) => HasFEAT_SME2
+class FEAT_SME2 ~ True => HasFEAT_SME2
+instance FEAT_SME2 ~ True => HasFEAT_SME2
 
 class FEAT_SPECRES ~ True => HasFEAT_SPECRES
 instance FEAT_SPECRES ~ True => HasFEAT_SPECRES
@@ -133,8 +133,8 @@ instance FEAT_SSBS ~ True => HasFEAT_SSBS
 class FEAT_SVE ~ True => HasFEAT_SVE
 instance FEAT_SVE ~ True => HasFEAT_SVE
 
-class (FEAT_SVE2 ~ True, HasFEAT_SVE) => HasFEAT_SVE2
-instance (FEAT_SVE2 ~ True, HasFEAT_SVE) => HasFEAT_SVE2
+class FEAT_SVE2 ~ True => HasFEAT_SVE2
+instance FEAT_SVE2 ~ True => HasFEAT_SVE2
 
 class FEAT_WFxT ~ True => HasFEAT_WFxT
 instance FEAT_WFxT ~ True => HasFEAT_WFxT
@@ -385,21 +385,21 @@ queryFEAT_SME = case sFEAT_SME of STrue -> unsafeAssumeFEAT_SME (Just Dict); SFa
 {-# NOINLINE queryFEAT_SME #-}
 
 unsafeAssumeFEAT_SME_F64F64 :: (HasFEAT_SME_F64F64 => a) -> a
-unsafeAssumeFEAT_SME_F64F64 k = case unsafeCoerce Refl :: FEAT_SME_F64F64 :~: True of Refl -> unsafeAssumeFEAT_SME k
+unsafeAssumeFEAT_SME_F64F64 k = case unsafeCoerce Refl :: FEAT_SME_F64F64 :~: True of Refl -> k
 
 queryFEAT_SME_F64F64 :: Maybe (Dict HasFEAT_SME_F64F64)
 queryFEAT_SME_F64F64 = case sFEAT_SME_F64F64 of STrue -> unsafeAssumeFEAT_SME_F64F64 (Just Dict); SFalse -> Nothing
 {-# NOINLINE queryFEAT_SME_F64F64 #-}
 
 unsafeAssumeFEAT_SME_I16I64 :: (HasFEAT_SME_I16I64 => a) -> a
-unsafeAssumeFEAT_SME_I16I64 k = case unsafeCoerce Refl :: FEAT_SME_I16I64 :~: True of Refl -> unsafeAssumeFEAT_SME k
+unsafeAssumeFEAT_SME_I16I64 k = case unsafeCoerce Refl :: FEAT_SME_I16I64 :~: True of Refl -> k
 
 queryFEAT_SME_I16I64 :: Maybe (Dict HasFEAT_SME_I16I64)
 queryFEAT_SME_I16I64 = case sFEAT_SME_I16I64 of STrue -> unsafeAssumeFEAT_SME_I16I64 (Just Dict); SFalse -> Nothing
 {-# NOINLINE queryFEAT_SME_I16I64 #-}
 
 unsafeAssumeFEAT_SME2 :: (HasFEAT_SME2 => a) -> a
-unsafeAssumeFEAT_SME2 k = case unsafeCoerce Refl :: FEAT_SME2 :~: True of Refl -> unsafeAssumeFEAT_SME k
+unsafeAssumeFEAT_SME2 k = case unsafeCoerce Refl :: FEAT_SME2 :~: True of Refl -> k
 
 queryFEAT_SME2 :: Maybe (Dict HasFEAT_SME2)
 queryFEAT_SME2 = case sFEAT_SME2 of STrue -> unsafeAssumeFEAT_SME2 (Just Dict); SFalse -> Nothing
@@ -427,7 +427,7 @@ queryFEAT_SVE = case sFEAT_SVE of STrue -> unsafeAssumeFEAT_SVE (Just Dict); SFa
 {-# NOINLINE queryFEAT_SVE #-}
 
 unsafeAssumeFEAT_SVE2 :: (HasFEAT_SVE2 => a) -> a
-unsafeAssumeFEAT_SVE2 k = case unsafeCoerce Refl :: FEAT_SVE2 :~: True of Refl -> unsafeAssumeFEAT_SVE k
+unsafeAssumeFEAT_SVE2 k = case unsafeCoerce Refl :: FEAT_SVE2 :~: True of Refl -> k
 
 queryFEAT_SVE2 :: Maybe (Dict HasFEAT_SVE2)
 queryFEAT_SVE2 = case sFEAT_SVE2 of STrue -> unsafeAssumeFEAT_SVE2 (Just Dict); SFalse -> Nothing
