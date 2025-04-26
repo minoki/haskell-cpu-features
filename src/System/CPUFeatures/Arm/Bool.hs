@@ -1,6 +1,12 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE MagicHash #-}
 {-# LANGUAGE UnliftedFFITypes #-}
+{- |
+Description: Detect Arm features at runtime
+
+This module provides the basic interface to detect CPU features.
+The availability is indicated by a boolean variable (@b\<FEATRUE NAME\>@).
+-}
 module System.CPUFeatures.Arm.Bool
   (bFEAT_AES
   ,bFEAT_AFP

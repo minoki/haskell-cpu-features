@@ -1,5 +1,23 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TypeFamilies #-}
+{- |
+Description: RISC-V features as type-level booleans
+
+This module provides the type-level interface to detect CPU features.
+You can mark your function with @\<FEATURE NAME\> ~ True =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @\<FEATURE NAME\> ~ True@
+by pattern-matching on the variable @s\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires the Vector extension
+> someFunction :: V ~ True => ...
+>
+> case sV of
+>   STrue -> {- In this branch, V is True -} someFunction
+>   SFalse -> {- In this branch, V is False -} error "Vector extension not available"
+-}
 module System.CPUFeatures.RISCV.TypeBool
   (C, sC
   ,V, sV

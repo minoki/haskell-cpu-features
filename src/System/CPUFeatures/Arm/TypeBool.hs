@@ -1,5 +1,23 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE DataKinds #-}
+{- |
+Description: Arm features as type-level booleans
+
+This module provides the type-level interface to detect CPU features.
+You can mark your function with @\<FEATURE NAME\> ~ True =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @\<FEATURE NAME\> ~ True@
+by pattern-matching on the variable @s\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires FEAT_PMULL
+> someFunction :: FEAT_PMULL ~ True => ...
+>
+> case sFEAT_PMULL of
+>   STrue -> {- In this branch, FEAT_PMULL is True -} someFunction
+>   SFalse -> {- In this branch, FEAT_PMULL is False -} error "FEAT_PMULL not available"
+-}
 module System.CPUFeatures.Arm.TypeBool
   (FEAT_AES, sFEAT_AES
   ,FEAT_AFP, sFEAT_AFP

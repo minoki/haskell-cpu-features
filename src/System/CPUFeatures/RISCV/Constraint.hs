@@ -1,3 +1,21 @@
+{- |
+Description: RISC-V features as nullary constraints
+
+This module provides the constraint interface to detect CPU features.
+You can mark your function with @Has\<FEATURE NAME\> =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @Has\<FEATURE NAME\>@
+by pattern-matching on the variable @query\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires the Vector extension
+> someFunction :: HasV => ...
+>
+> case queryV of
+>   Just Dict -> {- In this branch, HasV is available -} someFunction
+>   Nothing -> {- In this branch, HasV is not available -} error "Vector extension not available"
+-}
 module System.CPUFeatures.RISCV.Constraint
   (HasC, queryC
   ,HasV, queryV

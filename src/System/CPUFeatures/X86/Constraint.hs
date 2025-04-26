@@ -1,3 +1,21 @@
+{- |
+Description: x86 features as nullary constraints
+
+This module provides the constraint interface to detect CPU features.
+You can mark your function with @Has\<FEATURE NAME\> =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @Has\<FEATURE NAME\>@
+by pattern-matching on the variable @query\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires AVX2
+> someFunction :: HasAVX2 => ...
+>
+> case queryAVX2 of
+>   Just Dict -> {- In this branch, HasAVX2 is available -} someFunction
+>   Nothing -> {- In this branch, HasAVX2 is not available -} error "AVX2 not available"
+-}
 module System.CPUFeatures.X86.Constraint
   (HasAESNI, queryAESNI
   ,HasAMX_BF16, queryAMX_BF16

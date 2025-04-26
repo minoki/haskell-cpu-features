@@ -1,3 +1,21 @@
+{- |
+Description: Arm features as nullary constraints
+
+This module provides the constraint interface to detect CPU features.
+You can mark your function with @Has\<FEATURE NAME\> =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @Has\<FEATURE NAME\>@
+by pattern-matching on the variable @query\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires FEAT_PMULL
+> someFunction :: HasFEAT_PMULL => ...
+>
+> case queryFEAT_PMULL of
+>   Just Dict -> {- In this branch, HasFEAT_PMULL is available -} someFunction
+>   Nothing -> {- In this branch, HasFEAT_PMULL is not available -} error "FEAT_PMULL not available"
+-}
 module System.CPUFeatures.Arm.Constraint
   (HasFEAT_AES, queryFEAT_AES
   ,HasFEAT_AFP, queryFEAT_AFP

@@ -1,5 +1,23 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE DataKinds #-}
+{- |
+Description: x86 features as type-level booleans
+
+This module provides the type-level interface to detect CPU features.
+You can mark your function with @\<FEATURE NAME\> ~ True =>@ to indicate that
+it requires a specific CPU feature.
+You can detect the availability and get the constraint @\<FEATURE NAME\> ~ True@
+by pattern-matching on the variable @s\<FEATURE NAME\>@.
+
+Example:
+
+> -- This function requires AVX2
+> someFunction :: AVX2 ~ True => ...
+>
+> case sAVX2 of
+>   STrue -> {- In this branch, AVX2 is True -} someFunction
+>   SFalse -> {- In this branch, AVX2 is False -} error "AVX2 not available"
+-}
 module System.CPUFeatures.X86.TypeBool
   (AESNI, sAESNI
   ,AMX_BF16, sAMX_BF16
